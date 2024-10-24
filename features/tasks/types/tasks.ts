@@ -9,3 +9,4 @@ export const selectTaskSchema = createSelectSchema(tasks, {
 
 // TYPES
 export type Task = z.infer<typeof selectTaskSchema>;
+export type Recurring = (typeof recurringEnum.enumValues)[number];

@@ -9,6 +9,7 @@ import {
 import { users } from "./users";
 import { recurringEnum } from "./enums";
 import { sql } from "drizzle-orm";
+import { Recurring } from "@/features/tasks/types/tasks";
 
 const tasks = pgTable("tasks", {
   id: serial("id").primaryKey(),
@@ -18,7 +19,7 @@ const tasks = pgTable("tasks", {
   recurring: recurringEnum("recurring")
     .array()
     .notNull()
-    .default(sql`ARRAY[]::recurring[]`),
+    .default(sql`ARRAY['none']::recurring[]`),
   userId: integer("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
