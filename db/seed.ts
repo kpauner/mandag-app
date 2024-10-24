@@ -18,6 +18,7 @@ async function seedDatabase() {
     await resetTable(db, table);
   }
 
+  await seeds.users(db);
   await seeds.tasks(db);
 }
 

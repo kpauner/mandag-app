@@ -9,9 +9,7 @@ import {
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
-
-export const roleEnum = pgEnum("role", ["member", "admin"]);
-export const accountTypeEnum = pgEnum("type", ["email", "google", "github"]);
+import { accountTypeEnum } from "./enums";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -23,31 +21,31 @@ export const accounts = pgTable(
   "accounts",
   {
     id: serial("id").primaryKey(),
-    userId: serial("userId")
+    userId: integer("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    accountType: accountTypeEnum("accountType").notNull(),
-    githubId: text("githubId").unique(),
-    googleId: text("googleId").unique(),
+    account_type: accountTypeEnum("account_type").notNull(),
+    github_id: text("github_id").unique(),
+    google_id: text("google_id").unique(),
     password: text("password"),
     salt: text("salt"),
   },
   (table) => ({
     userIdAccountTypeIdx: index("user_id_account_type_idx").on(
       table.userId,
-      table.accountType
+      table.account_type
     ),
   })
 );
 
 export const profiles = pgTable("profiles", {
   id: serial("id").primaryKey(),
-  userId: serial("userId")
+  userId: integer("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" })
     .unique(),
-  displayName: text("displayName"),
-  imageId: text("imageId"),
+  displayName: text("display_name"),
+  imageId: text("image_id"),
   image: text("image"),
   bio: text("bio").notNull().default(""),
 });
@@ -56,7 +54,7 @@ export const sessions = pgTable(
   "sessions",
   {
     id: text("id").primaryKey(),
-    userId: serial("userId")
+    userId: integer("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     expiresAt: timestamp("expires_at", {

@@ -1,4 +1,3 @@
-import DailyPlanner from "@/components/daily-planner";
 import { SidebarLeft } from "@/components/sidebar-left";
 import { SidebarRight } from "@/components/sidebar-right";
 import {
@@ -14,8 +13,10 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import Planner from "@/features/planner/components/planner";
+import { GetTasks } from "@/features/tasks/api/get-tasks";
 
-export default function Page() {
+export default async function Page() {
+  const tasks = await GetTasks();
   return (
     <SidebarProvider>
       <SidebarLeft />
@@ -35,6 +36,7 @@ export default function Page() {
             </Breadcrumb>
           </div>
         </header>
+        <pre>{JSON.stringify(tasks, null, 2)}</pre>
         <Planner />
       </SidebarInset>
       <SidebarRight />
