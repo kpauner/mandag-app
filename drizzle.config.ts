@@ -5,7 +5,6 @@ export default defineConfig({
   schema: "./db/schema/index.ts",
   out: "./db/migrations",
   dialect: "postgresql",
-  driver: "pg",
   dbCredentials: {
     url: env.DATABASE_URL,
   },
