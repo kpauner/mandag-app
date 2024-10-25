@@ -24,7 +24,7 @@ export default async function seed(db: DB) {
     id: index + 1,
     name: item.name,
     description: item.description,
-    due: ensureDate(item.due),
+    due: new Date(item.due),
     recurring: (Array.isArray(item.recurring)
       ? item.recurring
       : [item.recurring]) as (typeof recurringEnum.enumValues)[number][],

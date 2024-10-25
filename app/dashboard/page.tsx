@@ -12,12 +12,14 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { GetPlansByUserIdAndDate } from "@/features/planner/api/get-plans-by-userid-and-date";
+import { getTasksByUserId } from "@/data-access/tasks";
 import Planner from "@/features/planner/components/planner";
-import Plans from "@/features/planner/components/plans";
 import { format } from "date-fns";
 
 export default async function Page() {
+  const plannerData = await getTasksByUserId(
+    "cfed58fe-549e-4f04-af19-15e080a407f2"
+  );
   return (
     <SidebarProvider>
       <SidebarLeft />
@@ -37,9 +39,8 @@ export default async function Page() {
             </Breadcrumb>
           </div>
         </header>
-        {/* <pre>{JSON.stringify(plans, null, 2)}</pre> */}
-        {/* <Planner /> */}
-        <Plans />
+        {/* <pre>{JSON.stringify(plannerData, null, 2)}</pre> */}
+        <Planner tasks={plannerData} workouts={[]} recipes={[]} />
       </SidebarInset>
       <SidebarRight />
     </SidebarProvider>

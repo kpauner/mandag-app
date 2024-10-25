@@ -1,5 +1,23 @@
+import {
+  MessageCircle,
+  Trash2,
+  Settings2,
+  Calendar,
+  ChartLine,
+  Home,
+  Sparkles,
+  Search,
+} from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
+  home: Home,
+  sparkles: Sparkles,
+  search: Search,
+  chartLine: ChartLine,
+  calendar: Calendar,
+  settings: Settings2,
+  trash: Trash2,
+  messageCircleQuestion: MessageCircle,
   google: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
