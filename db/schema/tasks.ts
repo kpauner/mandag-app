@@ -5,6 +5,7 @@ import {
   boolean,
   text,
   integer,
+  uuid,
 } from "drizzle-orm/pg-core";
 import { users } from "./users";
 import { recurringEnum } from "./enums";
@@ -20,7 +21,7 @@ const tasks = pgTable("tasks", {
     .array()
     .notNull()
     .default(sql`ARRAY['none']::recurring[]`),
-  userId: integer("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
 });

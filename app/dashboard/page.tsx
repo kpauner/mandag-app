@@ -12,11 +12,12 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { GetPlansByUserIdAndDate } from "@/features/planner/api/get-plans-by-userid-and-date";
 import Planner from "@/features/planner/components/planner";
-import { GetTasks } from "@/features/tasks/api/get-tasks";
+import Plans from "@/features/planner/components/plans";
+import { format } from "date-fns";
 
 export default async function Page() {
-  const tasks = await GetTasks();
   return (
     <SidebarProvider>
       <SidebarLeft />
@@ -36,8 +37,9 @@ export default async function Page() {
             </Breadcrumb>
           </div>
         </header>
-        <pre>{JSON.stringify(tasks, null, 2)}</pre>
-        <Planner />
+        {/* <pre>{JSON.stringify(plans, null, 2)}</pre> */}
+        {/* <Planner /> */}
+        <Plans />
       </SidebarInset>
       <SidebarRight />
     </SidebarProvider>

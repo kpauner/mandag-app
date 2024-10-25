@@ -8,11 +8,14 @@ import {
   serial,
   text,
   timestamp,
+  uuid,
 } from "drizzle-orm/pg-core";
 import { accountTypeEnum } from "./enums";
 
 export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
+  id: uuid("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
   email: text("email").unique(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
 });
@@ -21,7 +24,7 @@ export const accounts = pgTable(
   "accounts",
   {
     id: serial("id").primaryKey(),
-    userId: integer("user_id")
+    userId: uuid("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
     account_type: accountTypeEnum("account_type").notNull(),
@@ -40,7 +43,7 @@ export const accounts = pgTable(
 
 export const profiles = pgTable("profiles", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id")
+  userId: uuid("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" })
     .unique(),
@@ -54,9 +57,10 @@ export const sessions = pgTable(
   "sessions",
   {
     id: text("id").primaryKey(),
-    userId: integer("user_id")
+    userId: uuid("user_id")
       .notNull()
-      .references(() => users.id, { onDelete: "cascade" }),
+      .references(() => users.id, { onDelete: "cascade" })
+      .unique(),
     expiresAt: timestamp("expires_at", {
       withTimezone: true,
       mode: "date",

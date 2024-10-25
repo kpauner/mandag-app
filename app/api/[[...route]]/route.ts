@@ -2,8 +2,10 @@ import { Hono, Context } from "hono";
 import { handle } from "hono/vercel";
 import { logger } from "hono/logger";
 import { cors } from "hono/cors";
-import tasks from "./tasks";
 import { env } from "@/lib/env";
+
+import plans from "./plans";
+import tasks from "./tasks";
 
 const app = new Hono().basePath("/api");
 
@@ -19,7 +21,7 @@ app.use(
   })
 );
 
-// app.use("*", logger());
+app.use("*", logger());
 
 app.use("*", async (c, next) => {
   // const session = await auth();
@@ -27,8 +29,7 @@ app.use("*", async (c, next) => {
   await next();
 });
 
-const routes = app.route("/tasks", tasks);
-
+const routes = app.route("/tasks", tasks).route("/plans", plans);
 // Error handling
 app.onError((err, c) => {
   console.error("Global error:", err);
