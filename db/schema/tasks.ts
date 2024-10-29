@@ -16,7 +16,11 @@ const tasks = pgTable("tasks", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   description: text("description"),
-  due: timestamp("due", { mode: "date" }),
+  type: text("type").notNull().default("task"),
+  duration: integer("duration"),
+  startAt: timestamp("start_at", {
+    mode: "date",
+  }).default(sql`now()`),
   recurring: recurringEnum("recurring")
     .array()
     .notNull()

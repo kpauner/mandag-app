@@ -1,11 +1,7 @@
+import { AppSidebar } from "@/components/app-sidebar";
+import { NavSecondary } from "@/components/nav-secondary";
 import { SidebarLeft } from "@/components/sidebar-left";
-import { SidebarRight } from "@/components/sidebar-right";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
+import { SidebarRight } from "@/features/sidebar-right/components/sidebar-right";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -13,34 +9,30 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { getTasksByUserId } from "@/data-access/tasks";
+import DateNavigation from "@/features/planner/components/date-navigation";
 import Planner from "@/features/planner/components/planner";
-import { format } from "date-fns";
 
 export default async function Page() {
-  const plannerData = await getTasksByUserId(
-    "cfed58fe-549e-4f04-af19-15e080a407f2"
-  );
+  const tasks = await getTasksByUserId("cfed58fe-549e-4f04-af19-15e080a407f2");
+  const user = {
+    name: "kpauner",
+    email: "kpauner@gmail.com",
+    avatar: "/avatars/shadcn.jpg",
+  };
   return (
     <SidebarProvider>
-      <SidebarLeft />
+      <AppSidebar user={user} />
       <SidebarInset>
-        <header className="sticky top-0 flex h-14 shrink-0 items-center gap-2 bg-background">
-          <div className="flex flex-1 items-center gap-2 px-3">
-            <SidebarTrigger />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbPage className="line-clamp-1">
-                    Project Management & Task Tracking
-                  </BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
+        <header className="flex h-16 shrink-0 items-center gap-2 px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="h-4" />
+          <DateNavigation />
+          <Separator orientation="vertical" className="h-4" />
+          <SidebarTrigger className="ml-1" />
         </header>
-        {/* <pre>{JSON.stringify(plannerData, null, 2)}</pre> */}
-        <Planner tasks={plannerData} workouts={[]} recipes={[]} />
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <Planner tasks={tasks} workouts={[]} recipes={[]} />
+        </div>
       </SidebarInset>
       <SidebarRight />
     </SidebarProvider>

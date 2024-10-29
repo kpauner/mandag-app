@@ -14,11 +14,14 @@ async function resetTable(db: DB, table: Table) {
 }
 
 async function seedDatabase() {
+  console.log("Starting database seeding...");
+
   for (const table of [schema.tasks]) {
-    await resetTable(db, table);
+    // await resetTable(db, table);
+    console.log(`Processing table: ${table.name}`);
   }
 
-  await seeds.users(db);
+  // await seeds.users(db);
   await seeds.tasks(db);
 }
 

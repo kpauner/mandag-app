@@ -2,7 +2,6 @@
 // import { DemoSection } from "@/app/(landing)/_sections/demo";
 // import { FaqSection } from "@/app/(landing)/_sections/faq";
 // import { FeaturesSection } from "@/app/(landing)/_sections/features";
-// import { HeroSection } from "@/app/(landing)/_sections/hero";
 // import { NewsletterSection } from "@/app/(landing)/_sections/newsletter";
 // import { PricingSection } from "@/app/(landing)/_sections/pricing";
 // import { TestimonalsSection } from "@/app/(landing)/_sections/testimonals";

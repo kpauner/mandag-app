@@ -14,7 +14,6 @@ import { Task } from "@/features/tasks/types/tasks";
 
 import CurrentTimeIndicator from "./current-time-indicator";
 import EventCard from "./event-card";
-import DateNavigation from "./date-navigation";
 
 const hours = Array.from({ length: 24 }, (_, i) => i);
 
@@ -47,47 +46,39 @@ export default function Planner({ tasks, workouts, recipes }: PlannerProps) {
 
   const getEventsForHour = (hour: number) => {
     return allEvents.filter((event) => {
-      if (!event.due) return false;
-      const eventDate = parseISO(event.due.toISOString());
+      if (!event.startAt) return false;
+      const eventDate = parseISO(event.startAt.toISOString());
       return isSameDay(currentDate, eventDate) && eventDate.getHours() === hour;
     });
   };
 
-  const navigateDay = (direction: "prev" | "next") => {
-    setCurrentDate((prevDate) =>
-      addDays(prevDate, direction === "next" ? 1 : -1)
-    );
-  };
-
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4">
-      <DateNavigation currentDate={currentDate} onNavigate={navigateDay} />
-      <div className="mx-auto w-full max-w-4xl rounded-xl bg-muted/50 p-4">
-        <div className="grid grid-cols-1 gap-1 relative">
-          {isToday(currentDate) && <CurrentTimeIndicator />}
-          {hours.map((hour) => (
-            <div key={hour} className="flex border-b border-gray-200 py-2">
-              <div className="w-16 font-semibold text-right pr-4">
-                {format(setHours(setMinutes(currentDate, 0), hour), "HH:mm")}
-              </div>
-              <div className="flex-1">
-                {getEventsForHour(hour).map((event) => (
-                  <EventCard
-                    key={event.id}
-                    name={event.name}
-                    description={event.description || ""}
-                    due={
-                      event.due
-                        ? format(parseISO(event.due.toISOString()), "HH:mm")
-                        : "All day"
-                    }
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+    <div className="grid grid-cols-1 gap-1 relative">
+      <CurrentTimeIndicator />
+      {hours.map((hour) => (
+        <div key={hour} className="flex border-b border-gray-200 py-2">
+          <div className="w-16 font-semibold text-right pr-4">
+            {format(setHours(setMinutes(currentDate, 0), hour), "HH:mm")}
+          </div>
+          <div className="flex-1">
+            {getEventsForHour(hour).map((event) => (
+              <EventCard
+                key={event.id}
+                name={event.name}
+                description={event.description || ""}
+                duration={event.duration}
+                type={event.type}
+                className=""
+                startAt={
+                  event.startAt
+                    ? format(parseISO(event.startAt.toISOString()), "HH:mm")
+                    : "All day"
+                }
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 }

@@ -5,12 +5,20 @@ const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./features/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        emerald: "colors.emerald",
+        emerald: {
+          DEFAULT: "hsl(var(--emerald))",
+          foreground: "hsl(var(--emerald-foreground))",
+        },
+        sky: {
+          DEFAULT: "hsl(var(--sky))",
+          foreground: "hsl(var(--sky-foreground))",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -69,6 +77,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("tailwindcss/colors")],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;

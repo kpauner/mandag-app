@@ -1,15 +1,21 @@
 [
   {
+    "id": "serial",
     "name": "Complete project proposal",
     "description": "Finish and submit the project proposal document",
-    "due": "2024-10-25T12:30:00.000Z",
+    "type": "task",
+    "duration": 30,
+    "startAt": "2024-10-25T12:30:00.000Z",
     "recurring": ["none"],
     "userId": "cfed58fe-549e-4f04-af19-15e080a407f2"
   },
   {
+    "id": "team-meeting",
     "name": "Team meeting",
     "description": "Attend weekly team sync-up",
-    "due": "2024-10-25T10:00:00.000Z",
+    "type": "task",
+    "duration": 60,
+    "startAt": "2024-10-25T10:00:00.000Z",
     "recurring": ["monday", "wednesday", "friday"],
     "userId": "cfed58fe-549e-4f04-af19-15e080a407f2"
   }

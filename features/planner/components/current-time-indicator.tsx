@@ -15,6 +15,10 @@ import {
 export default function CurrentTimeIndicator() {
   const [now, setNow] = useState(new Date());
 
+  if (!isToday(now)) {
+    return null;
+  }
+
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 60000); // Update every minute
     return () => clearInterval(timer);

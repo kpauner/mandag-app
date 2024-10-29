@@ -1,9 +1,9 @@
-import * as React from "react"
-import { Plus } from "lucide-react"
+import * as React from "react";
+import { Plus } from "lucide-react";
 
-import { Calendars } from "@/components/calendars"
-import { DatePicker } from "@/components/date-picker"
-import { NavUser } from "@/components/nav-user"
+import { Calendars } from "@/components/calendars";
+import { DatePicker } from "@/components/date-picker";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -14,15 +14,11 @@ import {
   SidebarMenuItem,
   SidebarRail,
   SidebarSeparator,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { PieChartDonut } from "../../../components/charts/pie-chart-donut";
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   calendars: [
     {
       name: "My Calendars",
@@ -37,23 +33,30 @@ const data = {
       items: ["Travel", "Reminders", "Deadlines"],
     },
   ],
-}
+};
 
 export function SidebarRight({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
-      collapsible="none"
-      className="sticky hidden lg:flex top-0 h-svh border-l"
+      side="right"
+      collapsible="offcanvas"
+      className="sticky hidden lg:flex top-0 h-svh "
       {...props}
     >
-      <SidebarHeader className="h-16 border-b border-sidebar-border">
-        <NavUser user={data.user} />
-      </SidebarHeader>
       <SidebarContent>
         <DatePicker />
-        <SidebarSeparator className="mx-0" />
+        <PieChartDonut
+          label="visitors"
+          data={[
+            { event: "task", visitors: 275, fill: "var(--color-chrome)" },
+            { event: "break", visitors: 200, fill: "var(--color-safari)" },
+            { event: "workout", visitors: 287, fill: "var(--color-firefox)" },
+            { event: "meal", visitors: 173, fill: "var(--color-edge)" },
+            { event: "other", visitors: 190, fill: "var(--color-other)" },
+          ]}
+        />
         <Calendars calendars={data.calendars} />
       </SidebarContent>
       <SidebarFooter>
@@ -67,5 +70,5 @@ export function SidebarRight({
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }

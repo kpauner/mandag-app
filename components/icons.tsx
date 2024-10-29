@@ -7,6 +7,8 @@ import {
   Home,
   Sparkles,
   Search,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -18,6 +20,8 @@ const Icons = {
   settings: Settings2,
   trash: Trash2,
   messageCircleQuestion: MessageCircle,
+  chevronleft: ChevronLeft,
+  chevronright: ChevronRight,
   google: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
