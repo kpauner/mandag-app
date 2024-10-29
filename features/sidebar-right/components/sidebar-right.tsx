@@ -15,7 +15,8 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { PieChartDonut } from "../../../components/charts/pie-chart-donut";
+import { PieChartDonut } from "@/components/charts/pie-chart-donut";
+import { Asidebar, AsidebarFooter } from "@/components/ui/asidebar";
 
 // This is sample data.
 const data = {
@@ -37,12 +38,11 @@ const data = {
 
 export function SidebarRight({
   ...props
-}: React.ComponentProps<typeof Sidebar>) {
+}: React.ComponentProps<typeof Asidebar>) {
   return (
-    <Sidebar
+    <Asidebar
       side="right"
-      collapsible="offcanvas"
-      className="sticky hidden lg:flex top-0 h-svh "
+      // className="sticky hidden lg:flex top-0 h-svh "
       {...props}
     >
       <SidebarContent>
@@ -59,7 +59,7 @@ export function SidebarRight({
         />
         <Calendars calendars={data.calendars} />
       </SidebarContent>
-      <SidebarFooter>
+      <AsidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton>
@@ -68,7 +68,7 @@ export function SidebarRight({
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
-    </Sidebar>
+      </AsidebarFooter>
+    </Asidebar>
   );
 }

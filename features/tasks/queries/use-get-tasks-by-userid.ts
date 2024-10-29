@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/constants/query-keys";
-import { GetTasks } from "@/features/tasks/api/get-tasks";
+import { getTasksByUserId } from "@/data-access/tasks";
 
-export function useGetTasks() {
+export function useGetTasksByUserId(userId: string) {
   return useQuery({
     queryKey: [QUERY_KEYS.TASKS],
-    queryFn: GetTasks,
+    queryFn: () => getTasksByUserId(userId),
   });
 }
