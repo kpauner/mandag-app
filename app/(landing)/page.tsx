@@ -8,7 +8,13 @@
 // import { TheProblemSection } from "@/app/(landing)/_sections/the-problem";
 
 import { appConfig } from "@/constants/app-config";
-import { Hero } from "./_sections/hero";
+import Hero from "./_sections/hero";
+import NavLandingMain from "@/components/nav-landing-main";
+import { FeaturesSection } from "./_sections/features-section";
+import { PricingSection } from "./_sections/pricing";
+import Marquee from "@/components/marquee";
+import Container from "@/components/container";
+
 // import { getUserPlanUseCase } from "@/use-cases/subscriptions";
 // import { getCurrentUser } from "@/lib/session";
 
@@ -33,7 +39,18 @@ export default async function Home() {
 
     return (
       <div>
+        <NavLandingMain />
         <Hero />
+        <Container>
+          <Marquee
+            content={[
+              { id: 1, image: "/logos/logoipsum-255.svg", name: "Google" },
+              { id: 2, image: "/logos/logoipsum-264.svg", name: "Apple" },
+            ]}
+          />
+        </Container>
+        <FeaturesSection />
+        <PricingSection hasSubscription={true} />
         {/* <PricingSection hasSubscription={hasSubscription} /> */}
       </div>
     );
