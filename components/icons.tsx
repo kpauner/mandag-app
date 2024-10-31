@@ -10,10 +10,19 @@ import {
   ChevronLeft,
   ChevronRight,
   Loader2Icon,
+  ClipboardList,
+  PieChart,
+  Utensils,
+  Dumbbell,
+  TreePalm,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
   home: Home,
+  task: ClipboardList,
+  meal: Utensils,
+  workout: Dumbbell,
+  leisure: TreePalm,
   sparkles: Sparkles,
   search: Search,
   chartLine: ChartLine,

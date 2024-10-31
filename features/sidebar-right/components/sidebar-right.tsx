@@ -17,16 +17,17 @@ import {
 } from "@/components/ui/sidebar";
 import { PieChartDonut } from "@/components/charts/pie-chart-donut";
 import { Asidebar, AsidebarFooter } from "@/components/ui/asidebar";
+import { Statistics } from "@/components/statistics";
 
 // This is sample data.
 const data = {
-  calendars: [
+  statistics: [
     {
-      name: "My Calendars",
+      name: "Nutrition",
       items: ["Personal", "Work", "Family"],
     },
     {
-      name: "Favorites",
+      name: "workout",
       items: ["Holidays", "Birthdays"],
     },
     {
@@ -57,7 +58,7 @@ export function SidebarRight({
             { event: "other", visitors: 190, fill: "var(--color-other)" },
           ]}
         />
-        <Calendars calendars={data.calendars} />
+        <Statistics statistics={data.statistics} />
       </SidebarContent>
       <AsidebarFooter>
         <SidebarMenu>

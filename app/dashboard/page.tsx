@@ -29,7 +29,6 @@ export default async function Page() {
               <Separator orientation="vertical" className="h-4" />
               <DateNavigation />
               <Separator orientation="vertical" className="h-4" />
-              {/* <SidebarRightTrigger className="ml-1" /> */}
               <AsidebarTrigger className="ml-1" />
             </header>
             <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

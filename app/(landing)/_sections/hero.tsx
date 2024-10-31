@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import DotPattern from "@/components/magicui/dot-pattern";
 import BlurIn from "@/components/magicui/blur-in";
 import AnimatedImage from "@/components/animated-image";
+import AvatarsDisplay from "@/components/avatars-display";
+import { avatars } from "@/constants/landing";
 
 const MotionDiv = motion.div;
 
@@ -51,24 +53,43 @@ export default function Hero() {
         >
           <motion.div
             variants={itemVariants}
-            className="flex flex-row w-full lg:w-auto max-w-2xl flex-wrap"
+            className="z-20 flex flex-row items-center justify-center"
+          >
+            <Button
+              size="sm"
+              type="button"
+              variant="outline"
+              className="bg-transparent rounded-full shadow-none font-bold hover:bg-transparent cursor-default tracking-wide"
+            >
+              Currently in public beta!
+            </Button>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-row w-full lg:w-auto max-w-2xl flex-wrap justify-center gap-4 text-6xl md:text-8xl space-y-4"
           >
             <BlurIn
-              word="Vi tager det en"
-              className="font-display text-center text-5xl font-bold   mx-auto z-10"
+              word="Hver uge "
+              className="font-display font-bold z-10 py-2"
+              duration={1}
+            />
+            <BlurIn
+              word="starter med"
+              className="font-display font-bold z-10 py-2"
               duration={1}
             />
 
             <BlurIn
               word="Mandag"
-              className="font-serif bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text z-10 italic font-thin pb-1" // Added pb-1 for padding-bottom
+              className="font-serif bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text z-10 italic font-thin pt-2 pb-8"
               duration={1}
             />
-            <BlurIn
-              word="af gangen"
-              className="font-display text-center text-5xl font-bold   mx-auto z-10"
+            {/* <BlurIn
+              word="app"
+              className="font-display text-5xl font-bold   mx-auto z-10"
               duration={1}
-            />
+            /> */}
           </motion.div>
 
           <motion.h2
@@ -80,8 +101,19 @@ export default function Hero() {
             your day effectively.
           </motion.h2>
 
+          <motion.div
+            variants={itemVariants}
+            className="z-20 flex flex-row items-center justify-center"
+          >
+            <AvatarsDisplay avatars={avatars} />
+            <p className="text-sm text-muted-foreground tracking-normal ml-4 max-w-2xl mx-auto z-10">
+              already serving <br />
+              <span className="font-bold text-black italic">1000+ </span>users
+              worldwide
+            </p>
+          </motion.div>
           <motion.div variants={itemVariants} className="z-20">
-            <Button size="lg" className="shadow-2xl mb-10">
+            <Button size="lg" className="shadow-2xl mb-6">
               Get Started
             </Button>
           </motion.div>
