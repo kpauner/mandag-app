@@ -1,3 +1,4 @@
+import Icons from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -5,7 +6,9 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { cn } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
+import { cn, getEventIcon } from "@/lib/utils";
+import { EventType } from "@/types/events";
 
 type EventCardProps = {
   name: string;
@@ -24,6 +27,7 @@ export default function EventCard({
   startAt,
   className,
 }: EventCardProps) {
+  const IconComponent = getEventIcon(type as EventType);
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
@@ -55,7 +59,15 @@ export default function EventCard({
         </Button>
       </HoverCardTrigger>
       <HoverCardContent>
-        {description}
+        <div className="text-base font-bold pb-2 flex items-center justify-between gap-2">
+          {name}
+          <IconComponent className="w-4 h-4" />
+        </div>
+        <Separator />
+        <div className="text-sm text-muted-foreground">{description}</div>
+        <Separator />
+        <div className="text-sm text-muted-foreground">{type}</div>
+        <Separator />
         {startAt}
         <div className="text-xs text-muted-foreground">{duration} minutes</div>
       </HoverCardContent>

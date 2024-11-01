@@ -67,7 +67,7 @@ export default function Hero() {
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-row w-full lg:w-auto max-w-2xl flex-wrap justify-center gap-4 text-6xl md:text-8xl space-y-4"
+            className="flex flex-row w-full lg:w-auto max-w-2xl flex-wrap justify-center gap-4 text-6xl md:text-8xl gap-y-6"
           >
             <BlurIn
               word="Hver uge "

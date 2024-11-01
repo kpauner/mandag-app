@@ -9,7 +9,7 @@
 
 import { appConfig } from "@/constants/app-config";
 import Hero from "./_sections/hero";
-import NavLandingMain from "@/components/nav-landing-main";
+import NavLandingMain from "@/components/layout/header";
 import { FeaturesSection } from "./_sections/features-section";
 import { PricingSection } from "./_sections/pricing";
 import Marquee from "@/components/marquee";
