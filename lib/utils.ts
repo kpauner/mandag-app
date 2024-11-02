@@ -1,13 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import {
-  FileText,
-  FileImage,
-  FileVideo,
-  File,
-  type LucideIcon,
-} from "lucide-react";
 import { EventType } from "@/types/events";
+import Icons from "@/components/icons";
+import { LucideIcon } from "lucide-react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -15,11 +10,11 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getEventIcon(type: EventType): LucideIcon {
   const iconMap: Record<EventType, LucideIcon> = {
-    task: FileText,
-    workout: FileImage,
-    meal: FileVideo,
-    leisure: File,
-    other: File,
+    task: Icons.task,
+    workout: Icons.workout,
+    meal: Icons.meal,
+    leisure: Icons.leisure,
+    other: Icons.other,
   };
 
   return iconMap[type] || iconMap.other;

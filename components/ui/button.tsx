@@ -19,6 +19,14 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        task: "bg-chart-1/20 text-chart-1 border-chart-1/30 [&_svg]:size-6 [&_svg]:shrink-0",
+        workout:
+          "bg-chart-2/20 text-chart-2 border-chart-2 [&_svg]:size-6 [&_svg]:shrink-0",
+        meal: "bg-chart-3/20 text-chart-3 border-chart-3 [&_svg]:size-6 [&_svg]:shrink-0",
+        leisure:
+          "bg-chart-4/20 text-chart-4 border-chart-4 [&_svg]:size-6 [&_svg]:shrink-0",
+        other:
+          "bg-chart-5/20 text-chart-5 border-chart-5 [&_svg]:size-6 [&_svg]:shrink-0",
       },
       size: {
         default: "h-9 px-4 py-2",
