@@ -1,24 +1,26 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./features/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        emerald: {
-          DEFAULT: "hsl(var(--emerald))",
-          foreground: "hsl(var(--emerald-foreground))",
-        },
-        sky: {
-          DEFAULT: "hsl(var(--sky))",
-          foreground: "hsl(var(--sky-foreground))",
-        },
+        main: "#88aaee",
+        mainAccent: "#4d80e6", // not needed for shadcn components
+        overlay: "rgba(0,0,0,0.8)", // background color overlay for alert dialogs, modals, etc.
+        // light mode
+        bg: "#dfe5f2",
+        text: "#000",
+        darkBg: "#272933",
+        darkText: "#eeefe9",
+        darkBorder: "#000",
+        secondaryBlack: "#212121",
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -59,24 +61,28 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
       },
       borderRadius: {
+        base: "var(--radius)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        light: "4px 4px 0px 0px #000",
+        dark: "4px 4px 0px 0px #000",
+      },
+      translate: {
+        boxShadowX: "4px",
+        boxShadowY: "4px",
+        reverseBoxShadowX: "-4px",
+        reverseBoxShadowY: "-4px",
+      },
+      fontWeight: {
+        base: "500",
+        heading: "700",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
-export default config;
+} satisfies Config;
