@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class"],
@@ -9,11 +10,14 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-dm-sans)", ...fontFamily.sans],
+        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+      },
       colors: {
         main: "#88aaee",
         mainAccent: "#4d80e6", // not needed for shadcn components
         overlay: "rgba(0,0,0,0.8)", // background color overlay for alert dialogs, modals, etc.
-        // light mode
         bg: "#dfe5f2",
         text: "#000",
         darkBg: "#272933",

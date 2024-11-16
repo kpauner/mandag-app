@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { RootProvider } from "fumadocs-ui/provider";
+import { ThemeProvider } from "@/lib/providers/theme-provider";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+  variable: "--font-dm-sans",
 });
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -24,11 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${dmSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <RootProvider>{children}</RootProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
