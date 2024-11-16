@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 
-import DotPattern from "@/components/dot-pattern";
+// import DotPattern from "@/components/dot-pattern";
 import BlurIn from "@/components/blur-in";
 import AnimatedImage from "@/components/animated-image";
 import AvatarsDisplay from "@/components/avatars-display";
@@ -40,9 +40,7 @@ export default function Hero() {
   return (
     <main>
       <div className="z-0 relative min-h-screen w-full pb-40 overflow-hidden bg-bg">
-        {/* <DotPattern
-          className="bg-[radial-gradient(97.14%_56.45%_at_51.63%_0%,_#ffffff_0%,_#ffffff_30%,_#ffffff_100%)]"
-        /> */}
+        {/* <DotPattern className="bg-[radial-gradient(97.14%_56.45%_at_51.63%_0%,_#ffffff_0%,_#ffffff_30%,_#ffffff_100%)]" /> */}
         <MotionDiv
           className="relative z-10 flex flex-col items-center justify-start min-h-screen space-y-6 px-4 pt-16"
           variants={containerVariants}
@@ -57,7 +55,7 @@ export default function Hero() {
               size="sm"
               type="button"
               variant="noShadow"
-              className="bg-transparent rounded-full shadow-none font-bold hover:bg-transparent cursor-default tracking-wide "
+              className="bg-transparent rounded-full shadow-none text-sm font-bold hover:bg-transparent cursor-default tracking-wide "
             >
               Currently in public beta!
             </Button>
@@ -80,7 +78,7 @@ export default function Hero() {
 
             <BlurIn
               word="Mandag"
-              className="font-serif bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 text-transparent bg-clip-text z-10 italic font-thin pt-6 pb-12"
+              className="font-serif bg-gradient-to-r from-yellow-800 via-yellow-600 to-yellow-800 text-transparent bg-clip-text z-10 italic font-thin pt-6 pb-12"
               duration={1}
             />
             {/* <BlurIn

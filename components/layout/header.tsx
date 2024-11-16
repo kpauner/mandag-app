@@ -30,7 +30,7 @@ export default function Header() {
           {/* Auth Buttons - Always Visible */}
           <div className="flex gap-2">
             <Button size="lg">Signup</Button>
-            <Button size="lg" variant="noShadow">
+            <Button size="lg" variant="neutral">
               Login
             </Button>
           </div>

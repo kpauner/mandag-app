@@ -15,12 +15,16 @@ export default {
         mono: ["var(--font-geist-mono)", ...fontFamily.mono],
       },
       colors: {
-        main: "#88aaee",
-        mainAccent: "#4d80e6", // not needed for shadcn components
+        main: "#FFDC58",
+        mainAccent: "#ffc800", // not needed for shadcn components
         overlay: "rgba(0,0,0,0.8)", // background color overlay for alert dialogs, modals, etc.
-        bg: "#dfe5f2",
+
+        // light mode
+        bg: "hsl(var(--bg))",
         text: "#000",
-        darkBg: "#272933",
+
+        // dark mode
+        darkBg: "#374151",
         darkText: "#eeefe9",
         darkBorder: "#000",
         secondaryBlack: "#212121",
