@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useGetTasksByUserId } from "@/features/tasks/hooks/use-get-tasks-by-userid";
 import { addHours, format, startOfDay } from "date-fns";
 import { PlusIcon } from "lucide-react";
 import React from "react";
@@ -20,8 +21,11 @@ const timeSlots = Array.from({ length: 24 }, (_, i) => {
 });
 
 export default function Timeline({ items = [] }: TimelineProps) {
+  const { data } = useGetTasksByUserId(1);
+
   return (
     <div className="space-y-2">
+      <pre>{JSON.stringify(data, null, 2)}</pre>
       {timeSlots.map((slot) => {
         const matchingItem = items.find(
           (item) => format(item.startTime, "HH:mm") === slot.time

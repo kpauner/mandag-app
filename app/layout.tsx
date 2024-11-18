@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import { ThemeProvider } from "@/lib/providers/theme-provider";
+import QueryProvider from "@/lib/providers/query-provider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -30,14 +31,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <RootProvider>{children}</RootProvider>
-        </ThemeProvider>
+        <QueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <RootProvider>{children}</RootProvider>
+          </ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );
