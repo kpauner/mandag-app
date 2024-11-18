@@ -10,10 +10,11 @@
 import { appConfig } from "@/constants/app-config";
 import Hero from "./_sections/hero";
 import NavLandingMain from "@/components/layout/header";
-import { FeaturesSection } from "./_sections/features-section";
 import Pricing from "./_sections/pricing";
 import Marquee from "@/components/marquee";
 import Container from "@/components/layout/container";
+import AnimatedImage from "@/components/animated-image";
+import DotPattern from "@/components/dot-pattern";
 
 // import { getUserPlanUseCase } from "@/use-cases/subscriptions";
 // import { getCurrentUser } from "@/lib/session";
@@ -38,7 +39,7 @@ export default async function Home() {
     //   : false;
 
     return (
-      <div>
+      <main className="bg-white">
         <NavLandingMain />
         <Hero />
         <Container>
@@ -49,9 +50,18 @@ export default async function Home() {
             ]}
           />
         </Container>
-        <FeaturesSection />
+        <Container className="relative">
+          <DotPattern className="bg-[radial-gradient(97.14%_56.45%_at_51.63%_0%,_#ffffff_0%,_#ffffff_30%,_#ffffff_100%)]" />
+          <AnimatedImage
+            src="/image.webp"
+            alt="Image"
+            width={1200}
+            height={900}
+            className="w-full h-auto max-w-6xl mx-auto rounded-2xl shadow-lg"
+          />
+        </Container>
         <Pricing />
-      </div>
+      </main>
     );
   }
 }

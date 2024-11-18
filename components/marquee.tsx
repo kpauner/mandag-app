@@ -11,20 +11,6 @@ type MarqueeProps = {
   content: MarqueeItem[];
 };
 
-const marqueeVariants = {
-  animate: {
-    x: [0, -1035],
-    transition: {
-      x: {
-        repeat: Infinity,
-        repeatType: "loop",
-        duration: 5,
-        ease: "linear",
-      },
-    },
-  },
-};
-
 export default function Marquee({ content }: MarqueeProps) {
   return (
     <div className="relative flex w-full overflow-x-hidden py-12">
