@@ -7,7 +7,7 @@ import Timeline from "@/features/dashboard/components/timeline";
 
 export default function DashboardPage() {
   return (
-    <div className="relative flex h-screen overflow-hidden">
+    <div className="relative flex min-h-screen">
       <DashboardSidebar />
       <main className="flex-1 relative p-4">
         {/* Position triggers in the main content */}

@@ -16,14 +16,14 @@ const Panel = React.forwardRef<
     <aside
       ref={ref}
       className={cn(
-        "h-screen transition-all duration-300 ease-in-out bg-secondaryBlack text-darkText",
-        isExpanded ? "opacity-100 w-80" : "opacity-0 w-0",
+        "h-screen sticky top-0 transition-all duration-300 ease-in-out bg-secondaryBlack text-darkText md:flex overflow-y-hidden overflow-x-hidden",
+        isExpanded ? "min-w-[19.5rem]" : "w-0",
         !isExpanded && "invisible",
         className
       )}
       {...props}
     >
-      <div className="h-full w-full overflow-y-auto">{props.children}</div>
+      <div className="h-full w-full">{props.children}</div>
     </aside>
   );
 });

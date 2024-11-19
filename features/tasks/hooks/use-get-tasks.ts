@@ -1,14 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Task } from "@/features/tasks/types/tasks";
+import { QUERY_KEYS } from "@/constants/query-keys";
+import { env } from "@/lib/env";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: env.NEXT_PUBLIC_API_URL,
 });
 
-export function useGetTasksByUserId(userId: number) {
+export function useGetTasks() {
   return useQuery({
-    queryKey: ["tasks", userId],
+    queryKey: [QUERY_KEYS.TASKS],
     queryFn: async () => {
       try {
         const response = await axiosInstance.get<Task[]>(
