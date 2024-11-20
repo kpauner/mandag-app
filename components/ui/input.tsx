@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 
 const inputVariants = cva(
-  "flex w-full rounded-md border border-input bg-transparent py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+  "flex h-10 w-full rounded-base border-2 text-text dark:text-darkText font-base selection:bg-main selection:text-black border-border dark:border-darkBorder bg-white dark:bg-secondaryBlack py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "px-3  h-9 ",
+        default: "px-3  h-10",
         ghost:
           "border-none shadow-none bg-transparent hover:bg-accent/50 focus-visible:ring-0 font-bold md:text-xl placeholder:text-lg placeholder:font-bold",
       },

@@ -16,6 +16,8 @@ import {
   TreePalm,
   PanelRight,
   PanelLeft,
+  Clock,
+  X,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -37,6 +39,8 @@ const Icons = {
   loader: Loader2Icon,
   panelright: PanelRight,
   panelleft: PanelLeft,
+  clock: Clock,
+  close: X,
   logo: ({ ...props }: IconProps) => (
     <svg
       width="100%"
