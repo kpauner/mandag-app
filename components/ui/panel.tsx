@@ -2,9 +2,8 @@
 
 import { usePanel } from "@/features/dashboard/hooks/use-panel";
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
-import { ChevronLeft } from "lucide-react";
 import React from "react";
+import Icons from "../icons";
 
 const Panel = React.forwardRef<
   HTMLDivElement,
@@ -16,8 +15,8 @@ const Panel = React.forwardRef<
     <aside
       ref={ref}
       className={cn(
-        "h-screen sticky top-0 transition-all duration-300 ease-in-out bg-secondaryBlack text-darkText md:flex overflow-y-hidden overflow-x-hidden",
-        isExpanded ? "min-w-[19.5rem]" : "w-0",
+        "h-screen sticky top-0 transition-all duration-300 ease-in-out  text-darkText md:flex overflow-y-hidden overflow-x-hidden",
+        isExpanded ? "w-[20.5rem]" : "w-0",
         !isExpanded && "invisible",
         className
       )}
@@ -44,9 +43,9 @@ const PanelTrigger = React.forwardRef<
       {...props}
     >
       {isExpanded ? (
-        <ChevronLeft className="h-4 w-4" />
+        <Icons.panelleft className="h-4 w-4" />
       ) : (
-        <ChevronRight className="h-4 w-4" />
+        <Icons.panelright className="h-4 w-4" />
       )}
     </button>
   );

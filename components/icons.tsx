@@ -14,6 +14,8 @@ import {
   Utensils,
   Dumbbell,
   TreePalm,
+  PanelRight,
+  PanelLeft,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -33,6 +35,8 @@ const Icons = {
   chevronleft: ChevronLeft,
   chevronright: ChevronRight,
   loader: Loader2Icon,
+  panelright: PanelRight,
+  panelleft: PanelLeft,
   logo: ({ ...props }: IconProps) => (
     <svg
       width="100%"
@@ -70,6 +74,6 @@ const Icons = {
       />
     </svg>
   ),
-};
+} as const;
 
 export default Icons;

@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import Icons from "@/components/icons";
 import {
   Sheet,
@@ -10,6 +9,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import VisuallyHide from "@/components/ui/visually-hide";
+import AuthForm from "@/features/auth/components/auth-form";
+import { Button } from "../ui/button";
 
 export default function Header() {
   return (
@@ -27,20 +28,16 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          {/* Auth Buttons - Always Visible */}
           <div className="flex gap-2">
-            <Button size="lg">Signup</Button>
-            <Button size="lg" variant="neutral">
-              Login
-            </Button>
+            <AuthForm />
           </div>
 
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
-              <button>
+              <Button variant="neutral" size="lg">
                 <Icons.home className="h-6 w-6" />
-              </button>
+              </Button>
             </SheetTrigger>
             <SheetContent>
               <VisuallyHide>

@@ -5,6 +5,7 @@ import "./globals.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import QueryProvider from "@/lib/providers/query-provider";
+import { AuthProvider } from "@/lib/providers/auth-provider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -32,14 +33,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable} ${geistMono.variable} antialiased`}>
         <QueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <RootProvider>{children}</RootProvider>
-          </ThemeProvider>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <RootProvider>{children}</RootProvider>
+            </ThemeProvider>
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>
