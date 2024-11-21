@@ -6,6 +6,7 @@ import { RootProvider } from "fumadocs-ui/provider";
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import QueryProvider from "@/lib/providers/query-provider";
 import { AuthProvider } from "@/lib/providers/auth-provider";
+import OverlayProvider from "@/lib/providers/overlay-provider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <RootProvider>{children}</RootProvider>
+              <OverlayProvider />
             </ThemeProvider>
           </AuthProvider>
         </QueryProvider>

@@ -44,14 +44,14 @@ export function NumberInput({
   };
 
   return (
-    <div className={cn("flex items-center ", className)}>
+    <div className={cn("flex items-center", className)}>
       <Button
         type="button"
         variant="noShadow"
         size="icon"
         onClick={decrement}
         disabled={value <= min}
-        className="rounded-r-none border-r-0"
+        className="rounded-r-none border-r-0 aspect-square"
       >
         <Minus className="h-4 w-4" />
       </Button>
@@ -61,7 +61,7 @@ export function NumberInput({
         onChange={handleChange}
         min={min}
         max={max}
-        className="rounded-none text-center w-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        className="rounded-none text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
       />
       <Button
         type="button"
@@ -69,7 +69,7 @@ export function NumberInput({
         size="icon"
         onClick={increment}
         disabled={value >= max}
-        className="rounded-l-none border-l-0"
+        className="rounded-l-none border-l-0 aspect-square"
       >
         <Plus className="h-4 w-4" />
       </Button>

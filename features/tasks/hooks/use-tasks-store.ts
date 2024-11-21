@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
-type TasksStore = {
+interface TasksStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
-};
+}
 
 export const useTasksStore = create<TasksStore>((set) => ({
   isOpen: false,

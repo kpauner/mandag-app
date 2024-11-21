@@ -12,6 +12,7 @@ import Icons from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuthStore } from "@/features/auth/hooks/auth-store";
 import { cn } from "@/lib/utils";
+import { useTasksStore } from "@/features/tasks/hooks/use-tasks-store";
 
 const menuItems = [
   { icon: Icons.task, label: "Tasks", iconColor: "text-chart-1" },
@@ -23,6 +24,8 @@ const menuItems = [
 
 export default function DashboardSidebar() {
   const { user } = useAuthStore();
+  const { onOpen } = useTasksStore();
+
   return (
     <Sidebar className="text-white bg-black">
       <SidebarGroup>
@@ -39,6 +42,16 @@ export default function DashboardSidebar() {
       </SidebarGroup>
       <SidebarGroup>
         <SidebarGroupLabel className="pb-4">Aktiviteter</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem className="flex items-center gap-4" onClick={onOpen}>
+            <Icons.home className="size-5" />
+            Add task
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarGroup>
+      <SidebarGroup>
+        <SidebarGroupLabel className="pb-4">Aktiviteter</SidebarGroupLabel>
+
         <SidebarMenu className="space-y-4 font-sans text-lg">
           {menuItems.map((item) => (
             <SidebarMenuItem

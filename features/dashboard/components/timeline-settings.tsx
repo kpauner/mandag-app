@@ -1,42 +1,29 @@
-import { Input } from "@/components/ui/input";
 import { useTimeslotsStore } from "../hooks/use-timeslots-store";
+import { NumberInput } from "@/components/number-input";
 
 export function TimelineSettings() {
   const { timeRange, setTimeRange } = useTimeslotsStore();
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-4">
-        <div className="space-y-2">
+      <div className="flex justify-between items-center gap-4">
+        <div className="space-y-2  bg-teal-400">
           <label htmlFor="startHour">Start Hour</label>
-          <Input
-            type="number"
-            id="startHour"
-            min={0}
+          <NumberInput
             max={23}
             value={timeRange.startHour}
-            onChange={(e) =>
-              setTimeRange({
-                ...timeRange,
-                startHour: parseInt(e.target.value),
-              })
+            onChange={(value) =>
+              setTimeRange({ ...timeRange, startHour: value })
             }
+            className="w-full"
           />
         </div>
         <div className="space-y-2">
           <label htmlFor="endHour">End Hour</label>
-          <Input
-            type="number"
-            id="endHour"
-            min={0}
+          <NumberInput
             max={23}
             value={timeRange.endHour}
-            onChange={(e) =>
-              setTimeRange({
-                ...timeRange,
-                endHour: parseInt(e.target.value),
-              })
-            }
+            onChange={(value) => setTimeRange({ ...timeRange, endHour: value })}
           />
         </div>
       </div>

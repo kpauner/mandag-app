@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { format } from "date-fns";
+import { format, isLastDayOfMonth, isSameDay } from "date-fns";
 import useGetUserEvents from "@/features/events/hooks/use-get-user-events";
 import { TasksDialog } from "@/features/tasks/components/tasks-dialog";
 import { useTimeslotsStore } from "../hooks/use-timeslots-store";
 import { WorkoutsDialog } from "@/features/workouts/components/workouts-dialog";
+import { EventType } from "@/features/events/types/events";
+import { Recurring } from "@/types";
 
 const EVENT_COMPONENTS = {
   tasks: TasksDialog,
@@ -30,7 +32,7 @@ export default function Timeline() {
     const { startHour, endHour } = timeRange;
     const length = endHour - startHour + 1;
     return Array.from({ length }, (_, i) => {
-      const date = new Date();
+      const date = new Date(); // This will be today's date
       date.setHours(startHour + i, 0, 0, 0);
       return {
         time: formatTimeSlot(date),
@@ -38,6 +40,29 @@ export default function Timeline() {
       };
     });
   }, [timeRange]);
+
+  const shouldShowEvent = (event: EventType, slotTime: string) => {
+    const eventDate = new Date(event.startAt);
+    const today = new Date();
+
+    // Check if time matches
+    if (formatTimeSlot(eventDate) !== slotTime) return false;
+
+    // If event is today, show it
+    if (isSameDay(eventDate, today)) return true;
+
+    // If event has recurring pattern, check if today matches the pattern
+    if (event.recurring?.length) {
+      if (event.recurring.includes("lastDayOfMonth")) {
+        return isLastDayOfMonth(today);
+      }
+
+      const currentDayName = format(today, "EEEE").toLowerCase() as Recurring;
+      return event.recurring.includes(currentDayName);
+    }
+
+    return false;
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -48,9 +73,7 @@ export default function Timeline() {
           </span>
           <div className="">
             {events
-              .filter(
-                (item) => formatTimeSlot(new Date(item.startAt)) === slot.time
-              )
+              .filter((item) => shouldShowEvent(item, slot.time))
               .map((event, index) => {
                 const Component = EVENT_COMPONENTS[event.collectionName];
                 return (

@@ -22,7 +22,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Icons from "@/components/icons";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -32,6 +31,7 @@ import { DateTimePicker } from "@/components/date-time-picker";
 import { NumberInput } from "@/components/number-input";
 import { SelectTags } from "@/components/select-tags";
 import { BadgeCloud } from "@/components/badge-cloud";
+import { format } from "date-fns";
 
 type TasksDialogProps = {
   data?: Task;
@@ -57,17 +57,18 @@ export function TasksDialog({ data }: TasksDialogProps) {
     <Dialog>
       <DialogTrigger asChild>
         <div className="w-full px-4 py-8 bg-chart-1 border-2 border-border h-16 rounded-lg flex items-center justify-between cursor-pointer">
-          <div className="flex items-center w-full gap-2">
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-            <div className="flex flex-col ml-2">
-              <span className="text-lg font-bold tracking-wide leading-none">
-                {data?.title}
+          <div className="flex flex-col ml-2">
+            <span className="text-lg font-medium tracking-wide leading-none">
+              {data?.title}
+            </span>
+            <span className="text-sm font-bold flex flex-row gap-2">
+              <span>
+                {data?.startAt ? format(data.startAt, "HH:mm") : "All day"}
               </span>
-              <span className="text-sm text-black/50">
-                {data?.duration} min
-              </span>
-            </div>
+              /<span>{data?.duration} min</span>
+            </span>
           </div>
+
           <Icons.task className="w-6 h-6" />
         </div>
       </DialogTrigger>
