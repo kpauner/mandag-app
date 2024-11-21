@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useForm } from "react-hook-form";
-import { TaskFormValues } from "../types/tasks";
+import { WorkoutFormValues } from "../types/workouts";
 import {
   Form,
   FormControl,
@@ -24,19 +24,17 @@ import { DateTimePicker } from "@/components/date-time-picker";
 import { NumberInput } from "@/components/number-input";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useCreateTask } from "../hooks/use-create-task";
 
-interface CreateTaskDialogProps {
+interface CreateWorkoutDialogProps {
   open: boolean;
-  onOpenChangeAction: (open: boolean) => void;
+  onOpenChangeAction: (open: boolean) => void; // renamed prop
 }
 
-export default function CreateTaskDialog({
+export default function CreateWorkoutDialog({
   open,
   onOpenChangeAction,
-}: CreateTaskDialogProps) {
-  const createTask = useCreateTask();
-  const form = useForm<TaskFormValues>({
+}: CreateWorkoutDialogProps) {
+  const form = useForm<WorkoutFormValues>({
     defaultValues: {
       title: "",
       description: "",
@@ -46,20 +44,14 @@ export default function CreateTaskDialog({
     },
   });
 
-  const handleSubmit = async (data: TaskFormValues) => {
-    try {
-      await createTask.mutateAsync(data);
-      onOpenChangeAction(false);
-    } catch (error) {
-      console.error("Error creating task:", error);
-      // Handle error (show toast, etc.)
-    }
+  const handleSubmit = (data: WorkoutFormValues) => {
+    console.log(data);
   };
   return (
     <Dialog open={open} onOpenChange={onOpenChangeAction}>
       <DialogContent className="max-w-xl">
         <DialogHeader>
-          <DialogTitle>Create task</DialogTitle>
+          <DialogTitle>Create workout</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form

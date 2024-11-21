@@ -12,19 +12,77 @@ import Icons from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuthStore } from "@/features/auth/hooks/auth-store";
 import { cn } from "@/lib/utils";
-import { useTasksStore } from "@/features/tasks/hooks/use-tasks-store";
+import { useEventsDialogStore } from "@/features/events/hooks/use-events-dialog-store";
+import { DialogType } from "@/features/events/types/events";
+import Link from "next/link";
 
-const menuItems = [
-  { icon: Icons.task, label: "Tasks", iconColor: "text-chart-1" },
-  { icon: Icons.workout, label: "Workouts", iconColor: "text-chart-2" },
-  { icon: Icons.meal, label: "Meals", iconColor: "text-chart-3" },
-  { icon: Icons.leisure, label: "Leisure", iconColor: "text-chart-4" },
-  { icon: Icons.other, label: "Other", iconColor: "text-chart-5" },
-] as const;
+const sidebarMenu = {
+  main: [
+    {
+      icon: Icons.home,
+      label: "Home",
+      href: "/dashboard",
+      iconColor: "text-white/60",
+    },
+    {
+      icon: Icons.analytics,
+      label: "Analytics",
+      href: "/dashboard/analytics",
+      iconColor: "text-white/60",
+    },
+    {
+      icon: Icons.settings,
+      label: "Settings",
+      href: "/dashboard/settings",
+      iconColor: "text-white/60",
+    },
+  ],
+  events: [
+    {
+      icon: Icons.task,
+      label: "Tasks",
+      href: "/dashboard",
+      iconColor: "text-chart-1",
+      type: "task",
+    },
+    {
+      icon: Icons.workout,
+      label: "Workouts",
+      href: "/dashboard",
+      iconColor: "text-chart-2",
+      type: "workout",
+    },
+    {
+      icon: Icons.meal,
+      label: "Meals",
+      href: "/dashboard",
+      iconColor: "text-chart-3",
+      type: "meal",
+    },
+    {
+      icon: Icons.leisure,
+      label: "Leisure",
+      href: "/dashboard",
+      iconColor: "text-chart-4",
+      type: "leisure",
+    },
+    {
+      icon: Icons.other,
+      label: "Other",
+      href: "/dashboard",
+      iconColor: "text-chart-5",
+      type: "other",
+    },
+  ],
+} as const;
 
 export default function DashboardSidebar() {
   const { user } = useAuthStore();
-  const { onOpen } = useTasksStore();
+  const { onOpen } = useEventsDialogStore();
+
+  const handleAddClick = (type: DialogType) => {
+    onOpen(type);
+  };
 
   return (
     <Sidebar className="text-white bg-black">
@@ -41,25 +99,40 @@ export default function DashboardSidebar() {
         </div>
       </SidebarGroup>
       <SidebarGroup>
-        <SidebarGroupLabel className="pb-4">Aktiviteter</SidebarGroupLabel>
-        <SidebarMenu>
-          <SidebarMenuItem className="flex items-center gap-4" onClick={onOpen}>
-            <Icons.home className="size-5" />
-            Add task
-          </SidebarMenuItem>
+        <SidebarGroupLabel className="pb-4">Dashboard</SidebarGroupLabel>
+        <SidebarMenu className="space-y-4 font-sans text-lg">
+          {sidebarMenu.main.map((item) => (
+            <SidebarMenuItem className="" key={item.label}>
+              <Link href={item.href} className="flex items-center gap-4">
+                <item.icon className={cn(item.iconColor, "size-5")} />
+                {item.label}
+              </Link>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
       </SidebarGroup>
       <SidebarGroup>
-        <SidebarGroupLabel className="pb-4">Aktiviteter</SidebarGroupLabel>
+        <SidebarGroupLabel className="pb-4">Events</SidebarGroupLabel>
 
         <SidebarMenu className="space-y-4 font-sans text-lg">
-          {menuItems.map((item) => (
+          {sidebarMenu.events.map((item) => (
             <SidebarMenuItem
               key={item.label}
-              className="flex items-center gap-4"
+              className="flex items-center justify-between gap-4"
             >
-              <item.icon className={cn(item.iconColor, "size-5")} />
-              {item.label}
+              <div className="flex items-center gap-4">
+                <item.icon className={cn(item.iconColor, "size-5")} />
+                {item.label}
+              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddClick(item.type);
+                }}
+                className="hover:bg-gray-800 rounded-full p-1"
+              >
+                <Icons.plus className="size-4" />
+              </button>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>

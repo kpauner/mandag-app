@@ -34,7 +34,7 @@ import { BadgeCloud } from "@/components/badge-cloud";
 import { format } from "date-fns";
 
 type TasksDialogProps = {
-  data?: Task;
+  data?: Task | undefined;
 };
 
 export function TasksDialog({ data }: TasksDialogProps) {
@@ -72,7 +72,7 @@ export function TasksDialog({ data }: TasksDialogProps) {
           <Icons.task className="w-6 h-6" />
         </div>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="max-w-xl">
         <DialogHeader className="flex flex-row items-center justify-between pb-0 m-0">
           <div className="flex gap-2 items-center">
             <VisuallyHide>

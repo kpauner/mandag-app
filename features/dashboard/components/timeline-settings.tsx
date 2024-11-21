@@ -1,8 +1,10 @@
+import { Switch } from "@/components/ui/switch";
 import { useTimeslotsStore } from "../hooks/use-timeslots-store";
 import { NumberInput } from "@/components/number-input";
 
 export function TimelineSettings() {
-  const { timeRange, setTimeRange } = useTimeslotsStore();
+  const { timeRange, setTimeRange, hideEmptySlots, setHideEmptySlots } =
+    useTimeslotsStore();
 
   return (
     <div className="space-y-4">
@@ -26,6 +28,10 @@ export function TimelineSettings() {
             onChange={(value) => setTimeRange({ ...timeRange, endHour: value })}
           />
         </div>
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="hideEmptySlots">Hide Empty Slots</label>
+        <Switch checked={hideEmptySlots} onCheckedChange={setHideEmptySlots} />
       </div>
     </div>
   );

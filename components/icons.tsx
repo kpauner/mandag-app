@@ -18,6 +18,8 @@ import {
   PanelLeft,
   Clock,
   X,
+  Plus,
+  ChartColumnBig,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -41,6 +43,8 @@ const Icons = {
   panelleft: PanelLeft,
   clock: Clock,
   close: X,
+  plus: Plus,
+  analytics: ChartColumnBig,
   logo: ({ ...props }: IconProps) => (
     <svg
       width="100%"

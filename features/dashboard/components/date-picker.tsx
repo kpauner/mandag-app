@@ -1,7 +1,17 @@
+"use client";
+
 import { Calendar } from "@/components/ui/calendar";
+import { useCalendarStore } from "../hooks/use-calendar-store";
 
 export function DatePicker() {
+  const { selectedDate, setSelectedDate } = useCalendarStore();
+
   return (
-    <Calendar className="[&_[role=gridcell].bg-accent]:bg-sidebar-primary [&_[role=gridcell].bg-accent]:text-sidebar-primary-foreground [&_[role=gridcell]]:w-[33px]" />
+    <Calendar
+      mode="single"
+      selected={selectedDate}
+      onSelect={(date) => setSelectedDate(date || new Date())}
+      className="rounded-md border"
+    />
   );
 }
