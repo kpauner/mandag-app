@@ -3,7 +3,6 @@
 import { Workout, WorkoutFormValues } from "../types/workouts";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { format } from "date-fns";
 import {
   Dialog,
   DialogClose,
@@ -32,6 +31,7 @@ import { DateTimePicker } from "@/components/date-time-picker";
 import { NumberInput } from "@/components/number-input";
 import { SelectTags } from "@/components/select-tags";
 import { BadgeCloud } from "@/components/badge-cloud";
+import { Event } from "@/components/ui/event";
 
 type WorkoutsDialogProps = {
   data?: Workout;
@@ -56,21 +56,12 @@ export function WorkoutsDialog({ data }: WorkoutsDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="w-full px-4 py-8 bg-chart-2 border-2 border-border h-16 rounded-lg flex items-center justify-between cursor-pointer">
-          <div className="flex flex-col ml-2">
-            <span className="text-lg font-medium tracking-wide leading-none">
-              {data?.title}
-            </span>
-            <span className="text-sm font-bold flex flex-row gap-2">
-              <span>
-                {data?.startAt ? format(data.startAt, "HH:mm") : "All day"}
-              </span>
-              /<span>{data?.duration} min</span>
-            </span>
-          </div>
-
-          <Icons.workout className="w-6 h-6" />
-        </div>
+        <Event
+          variant="workouts"
+          startAt={data?.startAt}
+          title={data?.title || ""}
+          icon={<Icons.workout className="size-5 text-chart-2" />}
+        />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex flex-row items-center justify-between pb-0 m-0">

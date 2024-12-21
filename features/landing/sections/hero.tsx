@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import BlurIn from "@/components/blur-in";
 import AvatarsDisplay from "@/components/avatars-display";
 import { avatars } from "@/constants/landing";

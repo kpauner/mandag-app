@@ -5,16 +5,17 @@ import {
   Sidebar,
   SidebarGroup,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Icons from "@/components/icons";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useAuthStore } from "@/features/auth/hooks/auth-store";
 import { cn } from "@/lib/utils";
 import { useEventsDialogStore } from "@/features/events/hooks/use-events-dialog-store";
 import { DialogType } from "@/features/events/types/events";
 import Link from "next/link";
+import { NavUser } from "@/features/auth/components/nav-user";
 
 const sidebarMenu = {
   main: [
@@ -22,19 +23,19 @@ const sidebarMenu = {
       icon: Icons.home,
       label: "Home",
       href: "/dashboard",
-      iconColor: "text-white/60",
+      iconColor: "text-foreground",
     },
     {
       icon: Icons.analytics,
       label: "Analytics",
       href: "/dashboard/analytics",
-      iconColor: "text-white/60",
+      iconColor: "text-foreground",
     },
     {
       icon: Icons.settings,
       label: "Settings",
       href: "/dashboard/settings",
-      iconColor: "text-white/60",
+      iconColor: "text-foreground",
     },
   ],
   events: [
@@ -77,7 +78,6 @@ const sidebarMenu = {
 } as const;
 
 export default function DashboardSidebar() {
-  const { user } = useAuthStore();
   const { onOpen } = useEventsDialogStore();
 
   const handleAddClick = (type: DialogType) => {
@@ -85,27 +85,20 @@ export default function DashboardSidebar() {
   };
 
   return (
-    <Sidebar className="text-white bg-black">
-      <SidebarGroup>
-        <div className="flex items-center gap-3 rounded-full">
-          <Avatar>
-            <AvatarImage
-              src={user?.avatar || "https://github.com/shadcn.png"}
-              alt={user?.name || "potato"}
-            />
-            <AvatarFallback>{user?.name}</AvatarFallback>
-          </Avatar>
-          <div className="text-lg font-black">{user?.name}khend pauner</div>
-        </div>
-      </SidebarGroup>
-      <SidebarGroup>
-        <SidebarGroupLabel className="pb-4">Dashboard</SidebarGroupLabel>
-        <SidebarMenu className="space-y-4 font-sans text-lg">
+    <Sidebar className="px-2 bg-sidebar">
+      <SidebarHeader>
+        <NavUser />
+      </SidebarHeader>
+      <SidebarGroup className="">
+        <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
+        <SidebarMenu>
           {sidebarMenu.main.map((item) => (
             <SidebarMenuItem className="" key={item.label}>
               <Link href={item.href} className="flex items-center gap-4">
-                <item.icon className={cn(item.iconColor, "size-5")} />
-                {item.label}
+                <SidebarMenuButton>
+                  <item.icon className={cn(item.iconColor, "size-4")} />
+                  {item.label}
+                </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>
           ))}
@@ -114,25 +107,22 @@ export default function DashboardSidebar() {
       <SidebarGroup>
         <SidebarGroupLabel className="pb-4">Events</SidebarGroupLabel>
 
-        <SidebarMenu className="space-y-4 font-sans text-lg">
+        <SidebarMenu className="space-y-2">
           {sidebarMenu.events.map((item) => (
-            <SidebarMenuItem
-              key={item.label}
-              className="flex items-center justify-between gap-4"
-            >
-              <div className="flex items-center gap-4">
-                <item.icon className={cn(item.iconColor, "size-5")} />
-                {item.label}
-              </div>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleAddClick(item.type);
-                }}
-                className="hover:bg-gray-800 rounded-full p-1"
-              >
-                <Icons.plus className="size-4" />
-              </button>
+            <SidebarMenuItem key={item.label}>
+              <SidebarMenuButton className="w-full flex items-center justify-between">
+                <div className="flex items-center gap-4 ">
+                  <item.icon className={cn(item.iconColor, "size-5")} />
+                  {item.label}
+                </div>
+                <Icons.plus
+                  className="size-8 hover:text-sidebar-accent-foreground opacity-50 hover:opacity-100 "
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddClick(item.type);
+                  }}
+                />
+              </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>

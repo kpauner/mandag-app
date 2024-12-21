@@ -19,3 +19,5 @@ export const MAX_GROUP_LIMIT = 10;
 export const MAX_GROUP_PREMIUM_LIMIT = 50;
 
 export const afterLoginUrl = "/dashboard";
+
+export const APP_TIMEZONE = "UTC";

@@ -31,7 +31,7 @@ import { DateTimePicker } from "@/components/date-time-picker";
 import { NumberInput } from "@/components/number-input";
 import { SelectTags } from "@/components/select-tags";
 import { BadgeCloud } from "@/components/badge-cloud";
-import { format } from "date-fns";
+import { Event } from "@/components/ui/event";
 
 type TasksDialogProps = {
   data?: Task | undefined;
@@ -56,21 +56,13 @@ export function TasksDialog({ data }: TasksDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="w-full px-4 py-8 bg-chart-1 border-2 border-border h-16 rounded-lg flex items-center justify-between cursor-pointer">
-          <div className="flex flex-col ml-2">
-            <span className="text-lg font-medium tracking-wide leading-none">
-              {data?.title}
-            </span>
-            <span className="text-sm font-bold flex flex-row gap-2">
-              <span>
-                {data?.startAt ? format(data.startAt, "HH:mm") : "All day"}
-              </span>
-              /<span>{data?.duration} min</span>
-            </span>
-          </div>
-
-          <Icons.task className="w-6 h-6" />
-        </div>
+        <Event
+          variant="tasks"
+          startAt={data?.startAt}
+          duration={data?.duration}
+          title={data?.title || ""}
+          icon={<Icons.task className="size-5 text-chart-1" />}
+        />
       </DialogTrigger>
       <DialogContent className="max-w-xl">
         <DialogHeader className="flex flex-row items-center justify-between pb-0 m-0">

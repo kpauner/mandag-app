@@ -9,6 +9,8 @@ import { WorkoutsDialog } from "@/features/workouts/components/workouts-dialog";
 import { EventType } from "@/features/events/types/events";
 import { Recurring } from "@/types";
 import { useCalendarStore } from "../hooks/use-calendar-store";
+import { formatInTimeZone } from "date-fns-tz";
+import { APP_TIMEZONE } from "@/constants/app-config";
 
 function renderEvent(event: EventType) {
   switch (event.collectionName) {
@@ -20,8 +22,6 @@ function renderEvent(event: EventType) {
       return null;
   }
 }
-
-const formatTimeSlot = (date: Date) => format(date, "HH:mm");
 
 export default function Timeline() {
   const { selectedDate } = useCalendarStore();
@@ -38,23 +38,28 @@ export default function Timeline() {
 
   const shouldShowEvent = useCallback(
     (event: EventType, slotTime: string) => {
+      // Create a new UTC date from the ISO string
       const eventDate = new Date(event.startAt);
-      if (formatTimeSlot(eventDate) !== slotTime) return false;
+      // Get the time in UTC format for comparison
+      const eventTime = formatInTimeZone(
+        new Date(event.startAt),
+        APP_TIMEZONE,
+        "HH:mm"
+      );
+
+      if (eventTime !== slotTime) return false;
 
       if (isSameDay(eventDate, selectedDate)) return true;
-
       if (event.recurring?.length) {
         if (event.recurring.includes("lastDayOfMonth")) {
           return isLastDayOfMonth(selectedDate);
         }
-
         const currentDayName = format(
           selectedDate,
           "EEEE"
         ).toLowerCase() as Recurring;
         return event.recurring.includes(currentDayName);
       }
-
       return false;
     },
     [selectedDate]
@@ -65,9 +70,9 @@ export default function Timeline() {
     const length = endHour - startHour + 1;
     const slots = Array.from({ length }, (_, i) => {
       const date = new Date();
-      date.setHours(startHour + i, 0, 0, 0);
+      date.setUTCHours(startHour + i, 0, 0, 0);
       return {
-        time: formatTimeSlot(date),
+        time: formatInTimeZone(date, APP_TIMEZONE, "HH:mm"),
         date,
       };
     });
@@ -82,8 +87,8 @@ export default function Timeline() {
   return (
     <div className="flex flex-col gap-4">
       {timeSlots.map((slot) => (
-        <div key={slot.time} className="space-y-2 border-t-4 border-black">
-          <span className="text-lg font-black text-white bg-black p-1 rounded-b-md">
+        <div key={slot.time} className="space-y-2 border-t-2 border-black">
+          <span className="text-sm font-black text-muted-foreground tracking-wide">
             {slot.time}
           </span>
           <div className="space-y-2 py-4">
