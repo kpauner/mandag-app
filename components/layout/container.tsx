@@ -17,7 +17,7 @@ export default function Container({
       className={cn("px-5 py-14 md:px-6 md:py-20 lg:py-24", className)}
       {...restProps}
     >
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center">
+      <div className="mx-auto container flex w-full max-w-7xl flex-col items-center">
         {children}
       </div>
     </Component>

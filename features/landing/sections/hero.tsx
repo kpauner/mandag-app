@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import BlurIn from "@/components/blur-in";
 import AvatarsDisplay from "@/components/avatars-display";
 import { avatars } from "@/constants/landing";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const MotionDiv = motion.div;
 
@@ -35,49 +37,43 @@ export default function Hero() {
   return (
     <div className="z-0 relative min-h-screen w-full overflow-hidden bg-bg">
       <MotionDiv
-        className="relative z-10 flex flex-col items-center justify-start min-h-screen space-y-6 px-4 pt-16"
+        className="relative z-10 flex flex-col items-center justify-start min-h-screen space-y-6 px-4 pt-16 "
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.div
           variants={itemVariants}
-          className="z-20 flex flex-row items-center justify-center mb-6"
+          className="z-20 flex flex-row items-center justify-center"
         >
-          <Button
-            size="sm"
-            type="button"
-            variant="noShadow"
-            className="bg-transparent rounded-full shadow-none text-sm font-bold hover:bg-transparent cursor-default tracking-wide "
-          >
+          <p className="text-sm text-muted-foreground italic tracking-normal max-w-2xl mx-auto z-10">
             Currently in public beta!
-          </Button>
+          </p>
         </motion.div>
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-row w-full lg:w-auto max-w-3xl flex-wrap justify-center gap-4 text-6xl md:text-9xl gap-y-10"
+          className="flex flex-row w-full lg:w-auto max-w-3xl flex-wrap justify-center gap-4 text-5xl md:text-7xl gap-y-10 pb-8"
         >
           <BlurIn
             word="Hver uge "
-            className="font-sans font-black z-10 py-2"
+            className="font-family  z-10 py-2"
             duration={1}
           />
           <BlurIn
             word="starter med"
-            className="font-sans font-black z-10 py-2"
+            className="font-family  z-10 py-2"
             duration={1}
           />
-
           <BlurIn
-            word="Mandag"
-            className="font-serif bg-gradient-to-r from-yellow-800 via-yellow-600 to-yellow-800 text-transparent bg-clip-text z-10 italic font-thin pt-6 pb-12"
+            word="mandag tirsdag"
+            className="font-family  z-10 py-2"
             duration={1}
           />
         </motion.div>
 
         <motion.h2
-          className="text-2xl  text-opacity-60 tracking-normal text-center max-w-2xl mx-auto z-10 font-sans"
+          className="text-lg  text-opacity-60 tracking-normal text-center max-w-2xl mx-auto z-10 font-sans"
           variants={itemVariants}
         >
           A modern, intuitive habit tracking and daily planning application
@@ -96,8 +92,22 @@ export default function Hero() {
             worldwide
           </p>
         </motion.div>
-        <motion.div variants={itemVariants} className="z-20">
-          <Button size="xl">Get Started</Button>
+        <motion.div
+          variants={itemVariants}
+          className="z-20 flex flex-row gap-4"
+        >
+          <Link
+            href="/signup"
+            className={cn(buttonVariants({ variant: "default", size: "lg" }))}
+          >
+            Get Started
+          </Link>
+          <Link
+            href="/dashboard"
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+          >
+            Learn More
+          </Link>
         </motion.div>
       </MotionDiv>
     </div>

@@ -8,9 +8,9 @@
 // import { TheProblemSection } from "@/app/(landing)/_sections/the-problem";
 
 import { appConfig } from "@/constants/app-config";
-import Hero from "./_sections/hero";
+import Hero from "@/features/landing/sections/hero";
 import NavLandingMain from "@/components/layout/header";
-import Pricing from "./_sections/pricing";
+import Pricing from "@/features/landing/sections/pricing";
 import Marquee from "@/components/marquee";
 import Container from "@/components/layout/container";
 import AnimatedImage from "@/components/animated-image";

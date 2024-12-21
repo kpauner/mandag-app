@@ -14,8 +14,8 @@ import { Button } from "../ui/button";
 
 export default function Header() {
   return (
-    <header className="relative bg-bg py-2">
-      <div className="flex justify-between items-center p-4 px-10">
+    <header className="relative p-4 px-10 py-16">
+      <div className="flex justify-between items-center  mx-auto container w-full max-w-6xl">
         <Link href="/">
           <Icons.logo className="h-10 fill-primary/90" />
         </Link>
@@ -35,7 +35,7 @@ export default function Header() {
           {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="neutral" size="lg">
+              <Button variant="default" size="lg">
                 <Icons.home className="h-6 w-6" />
               </Button>
             </SheetTrigger>

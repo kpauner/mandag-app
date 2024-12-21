@@ -48,7 +48,7 @@ export default function AuthForm() {
         </Button>
         <Button
           onClick={() => router.push("/dashboard")}
-          variant="neutral"
+          variant="default"
           size="lg"
         >
           Kontrolpanel
@@ -60,7 +60,7 @@ export default function AuthForm() {
   return (
     <Button
       onClick={handleGoogleLogin}
-      variant="neutral"
+      variant="default"
       size="lg"
       className="flex items-center gap-2"
     >

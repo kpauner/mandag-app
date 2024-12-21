@@ -1,24 +1,11 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import QueryProvider from "@/lib/providers/query-provider";
 import { AuthProvider } from "@/lib/providers/auth-provider";
 import OverlayProvider from "@/lib/providers/overlay-provider";
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  adjustFontFallback: false,
-  variable: "--font-dm-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import { dmSans, family } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -33,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${dmSans.variable} ${geistMono.variable} antialiased font-sans`}
+        className={`${dmSans.variable} ${family.variable} antialiased font-sans`}
       >
         <QueryProvider>
           <AuthProvider>
