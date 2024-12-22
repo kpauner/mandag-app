@@ -1,4 +1,5 @@
 import { RecurringArray, RecurringArraySchema } from "@/types";
+import { RecordModel } from "pocketbase";
 import { z } from "zod";
 
 export const TaskFormSchema = z.object({
@@ -13,17 +14,13 @@ export type TaskFormValues = z.infer<typeof TaskFormSchema>;
 
 export type Task = {
   id: string;
-  collectionId: number;
-  collectionName: "tasks";
   title: string;
   description: string;
   startAt: Date;
   duration: number;
   recurring: RecurringArray;
   userId: string;
-  createdAt: string | null;
-  updatedAt: string | null;
-};
+} & RecordModel;
 
 export type TaskRecord = {
   page: number;

@@ -13,6 +13,12 @@ const config = {
         port: "",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "mandag.up.railway.app",
+        port: "",
+        pathname: "**",
+      },
     ],
   },
 };

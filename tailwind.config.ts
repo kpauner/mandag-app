@@ -51,10 +51,15 @@ export default {
         input: "hsl(var(--input))",
         chart: {
           "1": "hsl(var(--chart-1))",
+          "1-foreground": "hsl(var(--chart-1-foreground))",
           "2": "hsl(var(--chart-2))",
+          "2-foreground": "hsl(var(--chart-2-foreground))",
           "3": "hsl(var(--chart-3))",
+          "3-foreground": "hsl(var(--chart-3-foreground))",
           "4": "hsl(var(--chart-4))",
+          "4-foreground": "hsl(var(--chart-4-foreground))",
           "5": "hsl(var(--chart-5))",
+          "5-foreground": "hsl(var(--chart-5-foreground))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

@@ -1,4 +1,5 @@
 import { RecurringArray, RecurringArraySchema } from "@/types";
+import { RecordModel } from "pocketbase";
 import { z } from "zod";
 
 export const WorkoutFormSchema = z.object({
@@ -13,17 +14,16 @@ export type WorkoutFormValues = z.infer<typeof WorkoutFormSchema>;
 
 export type Workout = {
   id: string;
-  collectionId: number;
-  collectionName: "workouts";
   title: string;
   description: string;
+  image: string;
+  reps: number;
+  sets: number;
   startAt: Date;
   duration: number;
   recurring: RecurringArray;
   userId: string;
-  createdAt: string | null;
-  updatedAt: string | null;
-};
+} & RecordModel;
 
 export type WorkoutRecord = {
   page: number;

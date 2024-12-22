@@ -87,11 +87,11 @@ export default function Timeline() {
   return (
     <div className="flex flex-col gap-4">
       {timeSlots.map((slot) => (
-        <div key={slot.time} className="space-y-2 border-t-2 border-black">
-          <span className="text-sm font-black text-muted-foreground tracking-wide">
+        <div key={slot.time} className="space-y-2 ">
+          <span className="text-xs font-regular text-muted-foreground tracking-wide">
             {slot.time}
           </span>
-          <div className="space-y-2 py-4">
+          <div className="space-y-2 pb-4">
             {events
               .filter((item) => shouldShowEvent(item, slot.time))
               .map((event) => renderEvent(event))}

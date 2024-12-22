@@ -31,7 +31,9 @@ import { DateTimePicker } from "@/components/date-time-picker";
 import { NumberInput } from "@/components/number-input";
 import { SelectTags } from "@/components/select-tags";
 import { BadgeCloud } from "@/components/badge-cloud";
-import { Event } from "@/components/ui/event";
+import { WorkoutEvent } from "@/components/ui/event";
+import pb from "@/lib/pocketbase";
+import { ResponsiveImage } from "@/components/responsive-image";
 
 type WorkoutsDialogProps = {
   data?: Workout;
@@ -39,6 +41,7 @@ type WorkoutsDialogProps = {
 
 export function WorkoutsDialog({ data }: WorkoutsDialogProps) {
   const [isEditing, setIsEditing] = useState(false);
+
   const form = useForm<WorkoutFormValues>({
     defaultValues: {
       title: data?.title || "",
@@ -56,11 +59,13 @@ export function WorkoutsDialog({ data }: WorkoutsDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Event
-          variant="workouts"
+        <WorkoutEvent
           startAt={data?.startAt}
+          duration={data?.duration}
+          reps={data?.reps}
+          sets={data?.sets}
           title={data?.title || ""}
-          icon={<Icons.workout className="size-5 text-chart-2" />}
+          icon={<Icons.workout className="size-5" />}
         />
       </DialogTrigger>
       <DialogContent>
@@ -169,21 +174,26 @@ export function WorkoutsDialog({ data }: WorkoutsDialogProps) {
             </form>
           </Form>
         ) : (
-          <div className="space-y-2">
-            <div>
-              <h3 className="text-2xl font-medium">{data?.title}</h3>
-            </div>
-            {data?.description && (
-              <div>
-                <p className="pb-2">{data.description}</p>
-              </div>
+          <div className="space-y-4">
+            <h5 className="text-2xl font-medium">{data?.title}</h5>
+            {data?.image && (
+              <ResponsiveImage
+                src={pb.files.getUrl(data, data?.image)}
+                alt={data?.title || ""}
+              />
             )}
+
+            {data?.description && <p className="pb-2">{data.description}</p>}
             <BadgeCloud
+              other={[
+                ...(data?.reps ? [`${data.reps} reps`] : []),
+                ...(data?.sets ? [`${data.sets} sets`] : []),
+              ]}
               startAt={data?.startAt}
               duration={data?.duration}
-              collectionName={<Icons.task className="w-4 h-4" />}
               recurring={data?.recurring}
-              className="bg-chart-1"
+              collectionName={<Icons.workout className="size-4" />}
+              className="bg-chart-2 text-chart-2-foreground"
             />
           </div>
         )}

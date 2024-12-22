@@ -5,13 +5,14 @@ import { format } from "date-fns";
 import { RecurringArray } from "@/types";
 import { cn } from "@/lib/utils";
 
-interface BadgeCloudProps {
+type BadgeCloudProps = {
   startAt?: string | Date;
   duration?: number;
   collectionName?: React.ReactNode;
   recurring?: RecurringArray;
   className?: string;
-}
+  other?: string[];
+};
 
 export function BadgeCloud({
   startAt,
@@ -19,6 +20,7 @@ export function BadgeCloud({
   collectionName,
   recurring,
   className,
+  other,
 }: BadgeCloudProps) {
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -27,6 +29,12 @@ export function BadgeCloud({
           {collectionName}
         </Badge>
       )}
+
+      {other?.map((item) => (
+        <Badge key={item} variant="neutral">
+          {item}
+        </Badge>
+      ))}
 
       {startAt && (
         <Badge variant="default">
@@ -37,7 +45,7 @@ export function BadgeCloud({
 
       {duration && (
         <Badge variant="default">
-          <Icons.clock className="w-4 h-4 mr-2" />
+          <Icons.clock className="size-4 mr-2" />
           {duration} min
         </Badge>
       )}

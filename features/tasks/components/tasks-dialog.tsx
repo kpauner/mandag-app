@@ -31,7 +31,7 @@ import { DateTimePicker } from "@/components/date-time-picker";
 import { NumberInput } from "@/components/number-input";
 import { SelectTags } from "@/components/select-tags";
 import { BadgeCloud } from "@/components/badge-cloud";
-import { Event } from "@/components/ui/event";
+import { TaskEvent } from "@/components/ui/event";
 
 type TasksDialogProps = {
   data?: Task | undefined;
@@ -56,12 +56,11 @@ export function TasksDialog({ data }: TasksDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Event
-          variant="tasks"
-          startAt={data?.startAt}
-          duration={data?.duration}
+        <TaskEvent
           title={data?.title || ""}
-          icon={<Icons.task className="size-5 text-chart-1" />}
+          startAt={data?.startAt}
+          icon={<Icons.task className="size-5" />}
+          duration={data?.duration}
         />
       </DialogTrigger>
       <DialogContent className="max-w-xl">
