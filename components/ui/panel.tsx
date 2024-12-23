@@ -16,7 +16,7 @@ const Panel = React.forwardRef<
       ref={ref}
       className={cn(
         "h-screen sticky top-0 transition-all duration-300 ease-in-out  text-darkText md:flex overflow-y-hidden overflow-x-hidden",
-        isExpanded ? "w-[20.5rem]" : "w-0",
+        isExpanded ? "w-max-fit" : "w-0",
         !isExpanded && "invisible",
         className
       )}

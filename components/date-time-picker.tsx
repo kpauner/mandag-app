@@ -24,7 +24,6 @@ export function DateTimePicker({ value, onChange }: DateTimePickerProps) {
   const handleDateChange = (newDate: Date | undefined) => {
     if (!newDate) return;
 
-    // Create new date with current hours/minutes
     const updatedDate = new Date(newDate);
     updatedDate.setHours(parseInt(hours), parseInt(minutes));
     setDate(updatedDate);
@@ -61,7 +60,7 @@ export function DateTimePicker({ value, onChange }: DateTimePickerProps) {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant={"noShadow"}
+          variant={"default"}
           className={cn(
             "w-[320px] justify-start text-left font-normal space-x-2",
             !date && "text-muted-foreground"

@@ -26,21 +26,15 @@ function renderEvent(event: EventType) {
 export default function Timeline() {
   const { selectedDate } = useCalendarStore();
   const { timeRange, hideEmptySlots } = useTimeslotsStore();
-  const [tasksQuery, workoutsQuery] = useGetUserEvents();
-
+  const [tasksQuery, workoutsQuery] = useGetUserEvents(selectedDate);
   const events = useMemo(
-    () => [
-      ...(tasksQuery.data?.items || []),
-      ...(workoutsQuery.data?.items || []),
-    ],
-    [tasksQuery.data?.items, workoutsQuery.data?.items]
+    () => [...(tasksQuery.data || []), ...(workoutsQuery.data || [])],
+    [tasksQuery.data, workoutsQuery.data]
   );
 
   const shouldShowEvent = useCallback(
     (event: EventType, slotTime: string) => {
-      // Create a new UTC date from the ISO string
       const eventDate = new Date(event.startAt);
-      // Get the time in UTC format for comparison
       const eventTime = formatInTimeZone(
         new Date(event.startAt),
         APP_TIMEZONE,
@@ -86,6 +80,9 @@ export default function Timeline() {
 
   return (
     <div className="flex flex-col gap-4">
+      <pre className="w-full whitespace-pre-wrap">
+        {JSON.stringify(events, null, 2)}
+      </pre>
       {timeSlots.map((slot) => (
         <div key={slot.time} className="space-y-2 ">
           <span className="text-xs font-regular text-muted-foreground tracking-wide">

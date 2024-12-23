@@ -30,7 +30,7 @@ import pb from "@/lib/pocketbase";
 import AuthForm from "@/features/auth/components/auth-form";
 
 export function NavUser() {
-  const { user, isLoading } = useAuthStore((state) => state);
+  const { user, isLoading, logout } = useAuthStore((state) => state);
   const { isMobile } = useSidebar();
 
   if (!user || isLoading) {
@@ -106,7 +106,7 @@ export function NavUser() {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>
               <LogOut />
               Log out
             </DropdownMenuItem>
