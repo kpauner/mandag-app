@@ -14,6 +14,7 @@ import Pricing from "@/features/landing/sections/pricing";
 import Marquee from "@/components/marquee";
 import Container from "@/components/layout/container";
 import AnimatedImage from "@/components/animated-image";
+import Footer from "@/components/layout/footer";
 
 // import { getUserPlanUseCase } from "@/use-cases/subscriptions";
 // import { getCurrentUser } from "@/lib/session";
@@ -38,29 +39,35 @@ export default async function Home() {
     //   : false;
 
     return (
-      <main className="bg-white">
+      <>
         <NavLandingMain />
-        <Hero />
-        <Container className="relative  pt-0 md:pt-0 lg:pt-0">
-          <AnimatedImage
-            src="/image.png"
-            alt="Image"
-            width={900}
-            height={576}
-            className="w-full h-auto max-w-6xl mx-auto rounded-2xl shadow-lg"
-          />
-        </Container>
-        <Container>
-          <Marquee
-            content={[
-              { id: 1, image: "/logos/logoipsum-255.svg", name: "Google" },
-              { id: 2, image: "/logos/logoipsum-264.svg", name: "Apple" },
-            ]}
-          />
-        </Container>
+        <main>
+          <Hero />
+          <Container
+            className="relative  pt-0 md:pt-0 lg:pt-0"
+            innerClassName="flex flex-col items-center"
+          >
+            <AnimatedImage
+              src="/image.png"
+              alt="Image"
+              width={900}
+              height={576}
+              className="w-full h-auto max-w-6xl mx-auto rounded-2xl shadow-lg"
+            />
+          </Container>
+          <Container>
+            <Marquee
+              content={[
+                { id: 1, image: "/logos/logoipsum-255.svg", name: "Google" },
+                { id: 2, image: "/logos/logoipsum-264.svg", name: "Apple" },
+              ]}
+            />
+          </Container>
 
-        <Pricing />
-      </main>
+          <Pricing />
+        </main>
+        <Footer />
+      </>
     );
   }
 }
