@@ -1,19 +1,19 @@
-import { useQueries } from "@tanstack/react-query";
-import axios from "axios";
-import { TaskRecord } from "@/features/tasks/types/tasks";
-import { WorkoutRecord } from "@/features/workouts/types/workouts";
-import { QUERY_KEYS } from "@/constants/query-keys";
-import { env } from "@/lib/env";
-import { format, isLastDayOfMonth, isSameDay } from "date-fns";
 import { useCallback } from "react";
+import axios from "axios";
+import { env } from "@/lib/env";
+import { useQueries } from "@tanstack/react-query";
+import { QUERY_KEYS } from "@/constants/query-keys";
+import { format, isLastDayOfMonth, isSameDay } from "date-fns";
+import { WorkoutRecord } from "@/features/workouts/types/workouts";
 import { Recurring } from "@/types";
+import { TaskRecord } from "@/features/tasks/types/tasks";
 import { EventType } from "../types/events";
 
 const axiosInstance = axios.create({
   baseURL: env.NEXT_PUBLIC_API_URL,
 });
 
-// TODO: Move to utils - RETURNS TRUE IF EVENT SHOULD BE DISPLAYED
+// TODO: Move to utils as this us used throughout the app to determine if an event should be displayed
 const shouldShowEvent = (event: EventType, selectedDate: Date) => {
   const eventDate = new Date(event.startAt);
   // Direct date match

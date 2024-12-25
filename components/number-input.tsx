@@ -47,7 +47,7 @@ export function NumberInput({
     <div className={cn("flex items-center", className)}>
       <Button
         type="button"
-        variant="noShadow"
+        variant="default"
         size="icon"
         onClick={decrement}
         disabled={value <= min}
@@ -65,7 +65,7 @@ export function NumberInput({
       />
       <Button
         type="button"
-        variant="noShadow"
+        variant="default"
         size="icon"
         onClick={increment}
         disabled={value >= max}

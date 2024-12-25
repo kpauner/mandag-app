@@ -15,6 +15,7 @@ export type TaskFormValues = z.infer<typeof TaskFormSchema>;
 export type Task = {
   id: string;
   title: string;
+  collectionName: "tasks";
   description: string;
   startAt: Date;
   duration: number;

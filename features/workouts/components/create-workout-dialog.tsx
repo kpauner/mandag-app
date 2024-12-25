@@ -138,7 +138,7 @@ export default function CreateWorkoutDialog({
         </Form>
         <DialogFooter className="pt-4">
           <DialogClose asChild>
-            <Button variant="neutral">Cancel</Button>
+            <Button>Cancel</Button>
           </DialogClose>
           <Button type="submit" onClick={form.handleSubmit(handleSubmit)}>
             Save changes

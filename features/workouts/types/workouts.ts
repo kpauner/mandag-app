@@ -21,6 +21,7 @@ export type WorkoutFormValues = z.infer<typeof WorkoutFormSchema>;
 
 export type Workout = {
   id: string;
+  collectionName: "workouts";
   title: string;
   description: string;
   image: string;

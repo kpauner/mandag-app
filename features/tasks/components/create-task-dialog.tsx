@@ -146,7 +146,7 @@ export default function CreateTaskDialog({
         </Form>
         <DialogFooter className="pt-4">
           <DialogClose asChild>
-            <Button variant="neutral">Cancel</Button>
+            <Button variant="default">Cancel</Button>
           </DialogClose>
           <Button type="submit" onClick={form.handleSubmit(handleSubmit)}>
             Save changes
