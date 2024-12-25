@@ -80,9 +80,6 @@ export default function Timeline() {
 
   return (
     <div className="flex flex-col gap-4">
-      <pre className="w-full whitespace-pre-wrap">
-        {JSON.stringify(events, null, 2)}
-      </pre>
       {timeSlots.map((slot) => (
         <div key={slot.time} className="space-y-2 ">
           <span className="text-xs font-regular text-muted-foreground tracking-wide">

@@ -35,9 +35,9 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <div className="z-0 relative min-h-screen w-full overflow-hidden bg-bg">
+    <div className="z-0 relative h-[60vh] w-full overflow-hidden">
       <MotionDiv
-        className="relative z-10 flex flex-col items-center justify-start min-h-screen space-y-6 px-4 pt-16 "
+        className="relative z-10 flex flex-col items-center justify-start h-full space-y-6 px-4 pt-16 "
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -56,17 +56,17 @@ export default function Hero() {
           className="flex flex-row w-full lg:w-auto max-w-3xl flex-wrap justify-center gap-4 text-5xl md:text-7xl gap-y-10 pb-8"
         >
           <BlurIn
-            word="Hver uge "
+            word="Starting every "
             className="font-family  z-10 py-2"
             duration={1}
           />
           <BlurIn
-            word="starter med"
+            word="week with"
             className="font-family  z-10 py-2"
             duration={1}
           />
           <BlurIn
-            word="mandag tirsdag"
+            word="mandag"
             className="font-family  z-10 py-2"
             duration={1}
           />

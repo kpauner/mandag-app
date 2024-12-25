@@ -66,7 +66,6 @@ const AnimatedImage: React.FC<AnimatedImageProps> = ({
           width={width}
           height={height}
           className={className}
-          style={{ boxShadow: "0 4px 200px rgba(190, 187, 188, 0.5)" }}
           priority
         />
       </motion.div>

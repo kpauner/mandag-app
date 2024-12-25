@@ -1,5 +1,7 @@
+import { EventType } from "@/features/events/types/events";
+import { Recurring } from "@/types";
 import { clsx, type ClassValue } from "clsx";
-import { isToday } from "date-fns";
+import { format, isLastDayOfMonth, isToday } from "date-fns";
 import { twMerge } from "tailwind-merge";
 import { ZodError } from "zod";
 
@@ -13,15 +15,30 @@ export function formatZodError(error: ZodError) {
     .join(", ");
 }
 
-export const calculateChartData = (
-  events: Array<{
-    collectionName: string;
-    duration?: number;
-    startAt: Date;
-  }>
-) => {
+export const shouldShowEvent = (event: EventType, selectedDate: Date) => {
+  const eventDate = new Date(event.startAt);
+
+  // Direct date match
+  if (isToday(eventDate)) return true;
+  // Check recurring rules
+  if (event.recurring?.length) {
+    // Check last day of month
+    if (event.recurring.includes("lastDayOfMonth")) {
+      return isLastDayOfMonth(selectedDate);
+    }
+    // Check day of week
+    const currentDayName = format(
+      selectedDate,
+      "EEEE"
+    ).toLowerCase() as Recurring;
+    return event.recurring.includes(currentDayName);
+  }
+  return false;
+};
+
+export const calculateChartData = (events: EventType[]) => {
   const todaysEvents = events.filter((event) =>
-    isToday(new Date(event.startAt))
+    shouldShowEvent(event, new Date())
   );
   return Object.entries(
     todaysEvents.reduce((acc, event) => {

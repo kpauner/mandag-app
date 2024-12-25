@@ -51,7 +51,7 @@ export default function AuthForm() {
           variant="default"
           size="lg"
         >
-          Kontrolpanel
+          Dashboard
         </Button>
       </>
     );

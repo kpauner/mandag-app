@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
   baseURL: env.NEXT_PUBLIC_API_URL,
 });
 
-// TODO: Move to utils - RETURNS TRUE IF EVENT SHOULD BE DISPLAYED ON SELECTED DATE
+// TODO: Move to utils - RETURNS TRUE IF EVENT SHOULD BE DISPLAYED
 const shouldShowEvent = (event: EventType, selectedDate: Date) => {
   const eventDate = new Date(event.startAt);
   // Direct date match

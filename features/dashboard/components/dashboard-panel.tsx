@@ -4,19 +4,18 @@ import React from "react";
 import { Panel } from "@/components/ui/panel";
 import { DatePicker } from "./date-picker";
 import { SidebarGroup, SidebarGroupLabel } from "@/components/ui/sidebar";
-import { TimelineSettings } from "./timeline-settings";
+// import { TimelineSettings } from "./timeline-settings";
 import { DonutChart } from "@/components/donut-chart";
 import useGetUserEvents from "@/features/events/hooks/use-get-user-events";
 import { ChartConfig } from "@/components/ui/chart";
 import { calculateChartData } from "@/lib/utils";
+import { useCalendarStore } from "../hooks/use-calendar-store";
 
 export default function DashboardPanel() {
-  const [tasksQuery, workoutsQuery] = useGetUserEvents();
+  const { selectedDate } = useCalendarStore();
+  const [tasksQuery, workoutsQuery] = useGetUserEvents(selectedDate);
 
-  const events = [
-    ...(tasksQuery.data?.items || []),
-    ...(workoutsQuery.data?.items || []),
-  ];
+  const events = [...(tasksQuery.data || []), ...(workoutsQuery.data || [])];
 
   const chartData = calculateChartData(events);
 
@@ -48,17 +47,13 @@ export default function DashboardPanel() {
       <SidebarGroup>
         <DatePicker />
       </SidebarGroup>
-      <SidebarGroup>
+      {/* <SidebarGroup>
         <TimelineSettings />
-      </SidebarGroup>
+      </SidebarGroup> */}
       <SidebarGroup>
-        {/* <pre className="whitespace-pre-wrap">
-          {JSON.stringify(events, null, 2)}
-        </pre> */}
-        <pre className="whitespace-pre-wrap">
-          {JSON.stringify(chartData, null, 2)}
-        </pre>
-        <SidebarGroupLabel>Dashboard</SidebarGroupLabel>
+        <SidebarGroupLabel className="text-lg text-bold">
+          Today in numbers
+        </SidebarGroupLabel>
         <DonutChart chartData={chartData} chartConfig={chartConfig} />
       </SidebarGroup>
     </Panel>

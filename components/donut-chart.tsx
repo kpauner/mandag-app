@@ -9,7 +9,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { EventType } from "@/features/events/types/events";
 
 type DonutChartProps = {
   chartData: {

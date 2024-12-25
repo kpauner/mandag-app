@@ -14,7 +14,6 @@ import Pricing from "@/features/landing/sections/pricing";
 import Marquee from "@/components/marquee";
 import Container from "@/components/layout/container";
 import AnimatedImage from "@/components/animated-image";
-import DotPattern from "@/components/dot-pattern";
 
 // import { getUserPlanUseCase } from "@/use-cases/subscriptions";
 // import { getCurrentUser } from "@/lib/session";
@@ -42,6 +41,15 @@ export default async function Home() {
       <main className="bg-white">
         <NavLandingMain />
         <Hero />
+        <Container className="relative  pt-0 md:pt-0 lg:pt-0">
+          <AnimatedImage
+            src="/image.png"
+            alt="Image"
+            width={900}
+            height={576}
+            className="w-full h-auto max-w-6xl mx-auto rounded-2xl shadow-lg"
+          />
+        </Container>
         <Container>
           <Marquee
             content={[
@@ -50,16 +58,7 @@ export default async function Home() {
             ]}
           />
         </Container>
-        <Container className="relative">
-          <DotPattern className="bg-[radial-gradient(97.14%_56.45%_at_51.63%_0%,_#ffffff_0%,_#ffffff_30%,_#ffffff_100%)]" />
-          <AnimatedImage
-            src="/image.webp"
-            alt="Image"
-            width={1200}
-            height={900}
-            className="w-full h-auto max-w-6xl mx-auto rounded-2xl shadow-lg"
-          />
-        </Container>
+
         <Pricing />
       </main>
     );
