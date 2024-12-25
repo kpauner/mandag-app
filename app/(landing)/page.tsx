@@ -10,8 +10,8 @@
 import { appConfig } from "@/constants/app-config";
 import Hero from "@/features/landing/sections/hero";
 import NavLandingMain from "@/components/layout/header";
-import Pricing from "@/features/landing/sections/pricing";
-import Marquee from "@/components/marquee";
+// import Pricing from "@/features/landing/sections/pricing";
+// import Marquee from "@/components/marquee";
 import Container from "@/components/layout/container";
 import AnimatedImage from "@/components/animated-image";
 import Footer from "@/components/layout/footer";
@@ -55,16 +55,17 @@ export default async function Home() {
               className="w-full h-auto max-w-6xl mx-auto rounded-2xl shadow-lg"
             />
           </Container>
-          <Container>
+          {/* <Container>
             <Marquee
               content={[
                 { id: 1, image: "/logos/logoipsum-255.svg", name: "Google" },
                 { id: 2, image: "/logos/logoipsum-264.svg", name: "Apple" },
               ]}
             />
-          </Container>
-
-          <Pricing />
+          </Container> */}
+          {/* <Container>
+            <Pricing />
+          </Container> */}
         </main>
         <Footer />
       </>
