@@ -21,8 +21,8 @@ export default function Footer() {
           <FooterMenu {...navigationConfig.company} />
           <FooterMenu {...navigationConfig.resources} />
           <FooterMenu {...navigationConfig.legal} />
+          <FooterMenu {...navigationConfig.help} />
           <FooterMenu {...navigationConfig.resources} />
-          <FooterMenu {...navigationConfig.legal} />
         </div>
       </Container>
       <Separator />

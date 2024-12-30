@@ -10,6 +10,7 @@ import useGetUserEvents from "@/features/events/hooks/use-get-user-events";
 import { ChartConfig } from "@/components/ui/chart";
 import { calculateChartData } from "@/lib/utils";
 import { useCalendarStore } from "../hooks/use-calendar-store";
+import { TimelineSettings } from "./timeline-settings";
 
 export default function DashboardPanel() {
   const { selectedDate } = useCalendarStore();
@@ -47,9 +48,9 @@ export default function DashboardPanel() {
       <SidebarGroup>
         <DatePicker />
       </SidebarGroup>
-      {/* <SidebarGroup>
+      <SidebarGroup>
         <TimelineSettings />
-      </SidebarGroup> */}
+      </SidebarGroup>
       <SidebarGroup>
         <SidebarGroupLabel className="text-lg text-bold">
           Today in numbers

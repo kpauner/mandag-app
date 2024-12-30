@@ -9,7 +9,7 @@ export function TimelineSettings() {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center gap-4">
-        <div className="space-y-2  bg-teal-400">
+        <div className="space-y-2">
           <label htmlFor="startHour">Start Hour</label>
           <NumberInput
             max={23}
@@ -29,7 +29,7 @@ export function TimelineSettings() {
           />
         </div>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2 flex items-center gap-2 justify-between">
         <label htmlFor="hideEmptySlots">Hide Empty Slots</label>
         <Switch checked={hideEmptySlots} onCheckedChange={setHideEmptySlots} />
       </div>

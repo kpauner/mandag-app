@@ -43,35 +43,35 @@ const sidebarMenu = {
       icon: Icons.task,
       label: "Tasks",
       href: "/dashboard",
-      iconColor: "text-chart-1",
+      iconColor: "text-chart-1-foreground",
       type: "task",
     },
     {
       icon: Icons.workout,
       label: "Workouts",
       href: "/dashboard",
-      iconColor: "text-chart-2",
+      iconColor: "text-chart-2-foreground",
       type: "workout",
     },
     {
       icon: Icons.meal,
       label: "Meals",
       href: "/dashboard",
-      iconColor: "text-chart-3",
+      iconColor: "text-chart-3-foreground",
       type: "meal",
     },
     {
       icon: Icons.leisure,
       label: "Leisure",
       href: "/dashboard",
-      iconColor: "text-chart-4",
+      iconColor: "text-chart-4-foreground",
       type: "leisure",
     },
     {
       icon: Icons.other,
       label: "Other",
       href: "/dashboard",
-      iconColor: "text-chart-5",
+      iconColor: "text-chart-5-foreground",
       type: "other",
     },
   ],
@@ -96,7 +96,7 @@ export default function DashboardSidebar() {
             <SidebarMenuItem className="" key={item.label}>
               <Link href={item.href} className="flex items-center gap-4">
                 <SidebarMenuButton>
-                  <item.icon className={cn(item.iconColor, "size-4")} />
+                  <item.icon className={cn(item.iconColor, "")} />
                   {item.label}
                 </SidebarMenuButton>
               </Link>
