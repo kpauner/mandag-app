@@ -6,6 +6,7 @@ import Icons from "@/components/icons";
 import pb from "@/lib/pocketbase";
 import { useAuthStore } from "@/features/auth/hooks/auth-store";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function AuthForm() {
   const setUser = useAuthStore((state) => state.setUser);
@@ -27,7 +28,16 @@ export default function AuthForm() {
       // Optionally redirect after successful login
       router.push("/dashboard"); // or wherever you want to redirect
     } catch (error) {
-      console.error("OAuth error:", error);
+      console.error("OAuth error details:", {
+        message: error instanceof Error ? error.message : "Unknown error",
+        error,
+      });
+      // Show error to user with more details
+      toast.error(
+        `Login failed: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
+      );
     }
   };
 
