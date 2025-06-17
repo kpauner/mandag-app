@@ -1,38 +1,41 @@
 "use client";
 
-import React from "react";
 import { Button } from "@/components/ui/button";
-import Icons from "@/components/icons";
-import pb from "@/lib/pocketbase";
 import { useAuthStore } from "@/features/auth/hooks/auth-store";
 import { useRouter } from "next/navigation";
+import { Loader } from "lucide-react";
+import Icons from "@/components/icons";
+import pb from "@/lib/pocketbase";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
-export default function AuthForm() {
+type AuthFormProps = {
+  className?: string;
+};
+
+export default function AuthForm({ className }: AuthFormProps) {
   const setUser = useAuthStore((state) => state.setUser);
   const user = useAuthStore((state) => state.user);
   const isLoading = useAuthStore((state) => state.isLoading);
   const router = useRouter();
+
   if (isLoading) {
-    return <Icons.loader className="w-5 h-5 animate-spin" />;
+    return <Loader className="w-5 h-5 animate-spin" />;
   }
+
   const handleGoogleLogin = async () => {
     try {
       const authData = await pb.collection("users").authWithOAuth2({
         provider: "google",
       });
 
-      // Save the user in the store
+      const userData = await pb.collection("users").getOne(authData.record.id);
+      pb.authStore.save(pb.authStore.token, userData);
       setUser(authData.record);
 
-      // Optionally redirect after successful login
-      router.push("/dashboard"); // or wherever you want to redirect
+      router.push("/dashboard");
     } catch (error) {
-      console.error("OAuth error details:", {
-        message: error instanceof Error ? error.message : "Unknown error",
-        error,
-      });
-      // Show error to user with more details
+      console.error("OAuth error:", error);
       toast.error(
         `Login failed: ${
           error instanceof Error ? error.message : "Unknown error"
@@ -41,25 +44,14 @@ export default function AuthForm() {
     }
   };
 
-  // If user is already logged in, you might want to redirect
-  // or show a different UI
   if (user) {
     return (
       <>
         <Button
-          variant="destructive"
-          size="lg"
-          onClick={() => {
-            pb.authStore.clear();
-            setUser(null);
-          }}
-        >
-          Logout
-        </Button>
-        <Button
           onClick={() => router.push("/dashboard")}
           variant="default"
           size="lg"
+          className={cn("rounded-full", className)}
         >
           Dashboard
         </Button>
@@ -72,7 +64,7 @@ export default function AuthForm() {
       onClick={handleGoogleLogin}
       variant="default"
       size="lg"
-      className="flex items-center gap-2"
+      className={cn("rounded-full", className)}
     >
       <Icons.google className="w-5 h-5" />
       Continue with Google
